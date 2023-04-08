@@ -17,8 +17,8 @@ public class ManagerSL : ServiceLocatorRegisterMono
 
   public override void UnregisterServices()
   {
-    ServiceLocator.Remove(inputListener);
-    ServiceLocator.Remove(audioManager);
-    ServiceLocator.Remove(gameManager);
+    // ServiceLocator.Remove(inputListener);
+    // ServiceLocator.Remove(audioManager);
+    // ServiceLocator.Remove(gameManager);
   }
 }

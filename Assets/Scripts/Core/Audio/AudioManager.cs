@@ -38,6 +38,12 @@ namespace Lix.Core
 
     public void Play(string name)
     {
+      if (!sources.ContainsKey(name))
+      {
+        Debug.LogWarning("Sound: " + name + " not found");
+        return;
+      }
+
       sources[name].Play();
     }
 
@@ -62,6 +68,37 @@ namespace Lix.Core
           sources[s.soundName].volume = s.volume * masterVolume;
         }
       }
+    }
+
+    /// <summary>
+    /// Get whether a sound is playing or not.
+    /// </summary>
+    /// <param name="name">The name of the sound.</param>
+    /// <returns>Whether the sound is playing or not.</returns>
+    public bool IsPlaying(string name)
+    {
+      if (!sources.ContainsKey(name))
+      {
+        Debug.LogWarning("Sound: " + name + " not found");
+        return false;
+      }
+
+      return sources[name].isPlaying;
+    }
+
+    /// <summary>
+    /// Stop playing a sound.
+    /// </summary>
+    /// <param name="name">The name of the sound.</param>
+    public void Stop(string name)
+    {
+      if (!sources.ContainsKey(name))
+      {
+        Debug.LogWarning("Sound: " + name + " not found");
+        return;
+      }
+
+      sources[name].Stop();
     }
   }
 }

@@ -10,6 +10,7 @@ public class InputListener : MonoBehaviour, IInputListener
 
   private PlayerInput playerInput;
   private InputAction ActionMove;
+  private InputAction ActionJump;
   private InputAction ActionPause;
   private InputAction ActionFire;
   private InputAction ActionAim;
@@ -25,6 +26,8 @@ public class InputListener : MonoBehaviour, IInputListener
 
     ActionMove = playerInput.currentActionMap.FindAction("Move");
 
+    ActionJump = playerInput.currentActionMap.FindAction("Jump");
+
     ActionPause = playerInput.currentActionMap.FindAction("Pause");
 
     ActionFire = playerInput.currentActionMap.FindAction("Fire");
@@ -38,6 +41,8 @@ public class InputListener : MonoBehaviour, IInputListener
     {
       case InputActionType.Move:
         return ActionMove;
+      case InputActionType.Jump:
+        return ActionJump;
       case InputActionType.Pause:
         return ActionPause;
       case InputActionType.Fire:
