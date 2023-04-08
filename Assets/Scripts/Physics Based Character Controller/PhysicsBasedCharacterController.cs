@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Lix.Core;
+using Gizmos = Popcron.Gizmos;
 
 /// <summary>
 /// A floating-capsule oriented physics based character controller. Based on the approach devised by Toyful Games for Very Very Valet.
