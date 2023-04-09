@@ -347,7 +347,7 @@ MonoBehaviour:
   _characterLookDirection: 0
   _uprightSpringStrength: 40
   _uprightSpringDamper: 5
-  _maxSpeed: 4
+  _maxSpeed: 6
   _acceleration: 20
   _maxAccelForce: 50
   _leanFactor: 0.5
@@ -449,6 +449,8 @@ MonoBehaviour:
   _meleeDamage: 10
   _meleeCooldown: 0.5
   _pushForce: 30
+  _scoreValue: 10
+  _colorOnDeath: {r: 0.5, g: 0.5, b: 0.5, a: 1}
 --- !u!1 &3091736472447723775
 GameObject:
   m_ObjectHideFlags: 0

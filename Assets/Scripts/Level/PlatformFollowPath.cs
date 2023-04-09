@@ -7,6 +7,7 @@ public class PlatformFollowPath : MonoBehaviour
   [SerializeField] private Transform pointsParent;
   [SerializeField] private float duration = 2f;
   [SerializeField] private float waitAtEnd = 1f;
+  [SerializeField] private float delay = 2f;
 
   private int currentPointIndex = 0;
   private Vector3 startPoint;
@@ -26,6 +27,15 @@ public class PlatformFollowPath : MonoBehaviour
       endPoint = startPoint;
     }
     currentPointIndex = (currentPointIndex + 1) % pointsParent.childCount;
+
+    StartCoroutine(Delay());
+  }
+
+  private IEnumerator Delay()
+  {
+    isWaiting = true;
+    yield return new WaitForSeconds(delay);
+    isWaiting = false;
   }
 
   private void Update()
