@@ -84,6 +84,11 @@ namespace Lix.Core
         // InternalDebug.Log(progress);
         yield return null;
       }
+
+      if (loadingScreen != null)
+      {
+        loadingScreen.SetActive(false);
+      }
     }
   }
 }

@@ -6068,8 +6068,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Game Over
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
-  m_sharedMaterial: {fileID: 547028130441322774, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -6197,6 +6197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 1412617969}
+  _buttonMainMenu: {fileID: 775376311}
 --- !u!1 &188697778
 GameObject:
   m_ObjectHideFlags: 0
@@ -6493,7 +6494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &225330336
 Transform:
   m_ObjectHideFlags: 0
@@ -6875,7 +6876,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3882353, g: 0.39607844, b: 0.9647059, a: 1}
+  m_Color: {r: 1, g: 0.6431373, b: 0.2901961, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7139,9 +7140,9 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.5294118, g: 0.16025016, b: 0, a: 0.78431374}
-      key1: {r: 0.62352943, g: 0.48657653, b: 0, a: 0}
-      key2: {r: 0.34901962, g: 0.73333335, b: 0.3573317, a: 0}
+      key0: {r: 1, g: 0.6431373, b: 0, a: 0.78431374}
+      key1: {r: 1, g: 0.79607844, b: 0, a: 0}
+      key2: {r: 0.62352943, g: 0.48657653, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
       key5: {r: 0, g: 0, b: 0, a: 0}
@@ -7149,7 +7150,7 @@ TrailRenderer:
       key7: {r: 0, g: 0, b: 0, a: 0}
       ctime0: 0
       ctime1: 65535
-      ctime2: 59367
+      ctime2: 65535
       ctime3: 0
       ctime4: 0
       ctime5: 0
@@ -7181,7 +7182,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42552
+  m_Name: pb_Mesh71342
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7387,7 +7388,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42296
+  m_Name: pb_Mesh71092
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7600,7 +7601,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42674
+  m_Name: pb_Mesh71464
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -7773,7 +7774,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &482624040
 Transform:
   m_ObjectHideFlags: 0
@@ -7982,7 +7983,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42310
+  m_Name: pb_Mesh71106
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8358,7 +8359,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42278
+  m_Name: pb_Mesh71074
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8867,7 +8868,7 @@ GameObject:
   - component: {fileID: 775376312}
   - component: {fileID: 775376311}
   m_Layer: 5
-  m_Name: PlayAgain
+  m_Name: ButtonMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8937,19 +8938,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 775376312}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Lix.Core.SceneLoader, Assembly-CSharp
-        m_MethodName: Load
-        m_Mode: 3
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 1
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &775376312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9338,7 +9327,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42756
+  m_Name: pb_Mesh71546
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9502,7 +9491,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42642
+  m_Name: pb_Mesh71432
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10197,10 +10186,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play Again
+  m_text: Return To Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
-  m_sharedMaterial: {fileID: 547028130441322774, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -10280,7 +10269,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42792
+  m_Name: pb_Mesh71582
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10453,7 +10442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1023313969
 Transform:
   m_ObjectHideFlags: 0
@@ -10978,7 +10967,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1211072242
 Transform:
   m_ObjectHideFlags: 0
@@ -13802,7 +13791,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42852
+  m_Name: pb_Mesh71644
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -14218,8 +14207,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: You have reached year 2000
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
-  m_sharedMaterial: {fileID: 547028130441322774, guid: fcb5a8a449f7bb545b57ef5718087121, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -15191,7 +15180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1786725379
 Transform:
   m_ObjectHideFlags: 0
@@ -15735,7 +15724,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42688
+  m_Name: pb_Mesh71478
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -15952,7 +15941,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh42520
+  m_Name: pb_Mesh71316
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -20991,7 +20980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984199957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25, y: 2, z: -7}
+  m_LocalPosition: {x: 13, y: 2, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

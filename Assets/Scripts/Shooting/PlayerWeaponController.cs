@@ -16,18 +16,25 @@ public class PlayerWeaponController : MonoBehaviour
   private LaunchProjectile _currentLauncher;
 
   // Start is called before the first frame update
-  void Start()
+  void Awake()
   {
     EquipWeapon(_currentWeaponIndex);
-
     _inputListener = ServiceLocator.Get<InputListener>();
+  }
+
+  private void OnEnable()
+  {
     _inputListener.GetAction(InputActionType.Fire).performed += Fire;
+  }
+
+  private void OnDisable()
+  {
+    _inputListener.GetAction(InputActionType.Fire).performed -= Fire;
   }
 
   public void Fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
   {
     _currentLauncher.LaunchToMouse();
-
   }
 
   private void Update()
