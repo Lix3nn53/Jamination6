@@ -9,64 +9,101 @@ namespace Lix.Core
     public static AudioManager Instance;
 
     public Sound[] soundList;
-    private Dictionary<string, AudioSource> sources = new Dictionary<string, AudioSource>();
+    private Dictionary<string, Sound> soundDic = new Dictionary<string, Sound>();
 
     private float masterVolume = 1f;
     public float MasterVolume { get { return masterVolume; } private set { masterVolume = value; } }
+
+    private float musicVolume = 1f;
+    public float MusicVolume { get { return musicVolume; } private set { musicVolume = value; } }
+    private float sfxVolume = 1f;
+    public float SFXVolume { get { return sfxVolume; } private set { sfxVolume = value; } }
 
     // Start is called before the first frame update
     protected void Awake()
     {
       foreach (Sound s in soundList)
       {
-        if (sources.ContainsKey(s.soundName)) continue;
+        if (soundDic.ContainsKey(s.soundName)) continue;
 
         AudioSource source = s.source = gameObject.AddComponent<AudioSource>();
         s.source.clip = s.clip;
-        s.source.volume = s.volume * masterVolume;
+        float multiplier = 1f;
+        if (s.soundType == SoundType.Background)
+        {
+          multiplier = musicVolume;
+        }
+        else if (s.soundType == SoundType.SFX)
+        {
+          multiplier = sfxVolume;
+        }
+        s.source.volume = s.volume * masterVolume * multiplier;
         s.source.pitch = s.pitch;
         s.source.loop = s.loop;
 
-        sources.Add(s.soundName, source);
+        soundDic.Add(s.soundName, s);
       }
     }
 
-    private void Start()
+    private IEnumerator Start()
     {
-      Play("Background");
+      AudioSource source = Play("Background Start");
+
+      yield return new WaitUntil(() => source.isPlaying == false);
+
+      Play("Background Loop");
     }
 
-    public void Play(string name)
+    public AudioSource Play(string name)
     {
-      if (!sources.ContainsKey(name))
+      if (!soundDic.ContainsKey(name))
       {
         Debug.LogWarning("Sound: " + name + " not found");
-        return;
+        return null;
       }
 
-      sources[name].Play();
+      soundDic[name].source.Play();
+      return soundDic[name].source;
     }
 
     public void SetVolume(string name, float v)
     {
-      sources[name].volume = v;
+      soundDic[name].volume = v;
     }
 
     public void SetMasterVolume(float v)
     {
       masterVolume = v;
+      UpdateVolumes();
+    }
 
-      foreach (KeyValuePair<string, AudioSource> entry in sources)
-      {
-        entry.Value.volume = entry.Value.volume * masterVolume;
-      }
+    public void SetMusicVolume(float v)
+    {
+      musicVolume = v;
+      UpdateVolumes();
+    }
 
-      foreach (Sound s in soundList)
+    public void SetSFXVolume(float v)
+    {
+      sfxVolume = v;
+      UpdateVolumes();
+    }
+
+    public void UpdateVolumes()
+    {
+      foreach (KeyValuePair<string, Sound> entry in soundDic)
       {
-        if (sources.ContainsKey(s.soundName))
+        float multiplier = 1f;
+        if (entry.Value.soundType == SoundType.Background)
         {
-          sources[s.soundName].volume = s.volume * masterVolume;
+          multiplier = musicVolume;
         }
+        else if (entry.Value.soundType == SoundType.SFX)
+        {
+          multiplier = sfxVolume;
+        }
+
+        entry.Value.source.volume = entry.Value.volume * masterVolume * multiplier;
       }
     }
 
@@ -77,13 +114,13 @@ namespace Lix.Core
     /// <returns>Whether the sound is playing or not.</returns>
     public bool IsPlaying(string name)
     {
-      if (!sources.ContainsKey(name))
+      if (!soundDic.ContainsKey(name))
       {
         Debug.LogWarning("Sound: " + name + " not found");
         return false;
       }
 
-      return sources[name].isPlaying;
+      return soundDic[name].source.isPlaying;
     }
 
     /// <summary>
@@ -92,13 +129,13 @@ namespace Lix.Core
     /// <param name="name">The name of the sound.</param>
     public void Stop(string name)
     {
-      if (!sources.ContainsKey(name))
+      if (!soundDic.ContainsKey(name))
       {
         Debug.LogWarning("Sound: " + name + " not found");
         return;
       }
 
-      sources[name].Stop();
+      soundDic[name].source.Stop();
     }
   }
 }

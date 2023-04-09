@@ -7,7 +7,9 @@ using Lix.Core;
 public class MenuSettings : MonoBehaviour
 {
   private AudioManager audioManager;
-  [SerializeField] private Slider slider;
+  [SerializeField] private Slider sliderMaster;
+  [SerializeField] private Slider sliderMusic;
+  [SerializeField] private Slider sliderVFX;
 
   // Start is called before the first frame update
   void Start()
@@ -15,9 +17,18 @@ public class MenuSettings : MonoBehaviour
     audioManager = ServiceLocator.Get<AudioManager>();
   }
 
-  // Update is called once per frame
-  public void OnSliderValueChange()
+  public void SetMasterVolume()
   {
-    audioManager.SetMasterVolume(slider.value);
+    audioManager.SetMasterVolume(sliderMaster.value);
+  }
+
+  public void SetMusicVolume()
+  {
+    audioManager.SetMusicVolume(sliderMusic.value);
+  }
+
+  public void SetSFXVolume()
+  {
+    audioManager.SetSFXVolume(sliderVFX.value);
   }
 }

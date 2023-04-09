@@ -21,5 +21,11 @@ namespace Lix.Core
 
     [HideInInspector]
     public AudioSource source;
+    public SoundType soundType;
+  }
+  public enum SoundType
+  {
+    Background,
+    SFX
   }
 }
