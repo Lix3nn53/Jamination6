@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Player Weapon", menuName = "Gamejam/Player Weapon")]
 public class PlayerWeapon : ScriptableObject
 {
+  [SerializeField] private string _weaponName;
+  public string WeaponName => _weaponName;
   [SerializeField] private GameObject _weaponPrefab;
 
   public GameObject Equip(Transform weaponParent)

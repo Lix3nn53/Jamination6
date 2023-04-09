@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8133062469baea147ac9547522b50579, type: 3}
   m_Name: FreezeGun
   m_EditorClassIdentifier: 
+  _weaponName: Freeze Gun
   _weaponPrefab: {fileID: 4025431998681535795, guid: a6f57fbceea154a43871eb0a0af8e445, type: 3}

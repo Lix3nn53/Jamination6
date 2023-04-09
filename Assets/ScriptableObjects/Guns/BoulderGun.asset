@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8133062469baea147ac9547522b50579, type: 3}
   m_Name: BoulderGun
   m_EditorClassIdentifier: 
+  _weaponName: Boulder Gun
   _weaponPrefab: {fileID: 4025431998681535795, guid: 7404294d4bc98784aa1212155e09496a, type: 3}
-  _extraCursorPrefab: {fileID: 8502064034767735148, guid: da902f200e8c387429a11f7eade41f68, type: 3}
-  _extraCursorOffset: {x: 0, y: 0, z: 0}

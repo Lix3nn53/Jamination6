@@ -39,7 +39,7 @@ public class MenuGameOver : MonoBehaviour
 
   public void OnGameOver(int scoreValue)
   {
-    scoreText.text = "You score is " + scoreValue;
+    scoreText.text = "Your score is " + scoreValue;
 
     foreach (Transform child in transform)
     {

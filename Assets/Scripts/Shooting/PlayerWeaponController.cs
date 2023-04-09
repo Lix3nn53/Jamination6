@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using TMPro;
 using Lix.Core;
 
 public class PlayerWeaponController : MonoBehaviour
@@ -19,6 +20,10 @@ public class PlayerWeaponController : MonoBehaviour
   // Cooldown and reload
   private bool _isReloading = false;
   [SerializeField] private Slider _reloadSlider;
+
+  // Random next weapon
+  [SerializeField] private int _secondsToNextWeapon = 10;
+  [SerializeField] private TMP_Text _weaponNameText;
 
   // Start is called before the first frame update
   void Awake()
@@ -111,5 +116,33 @@ public class PlayerWeaponController : MonoBehaviour
 
     GameObject weapon = _weaponInventory[index].Equip(_weaponParent);
     _currentLauncher = weapon.GetComponent<LaunchProjectile>();
+
+    _weaponNameText.text = "Weapon: " + _weaponInventory[index].WeaponName + " (" + _secondsToNextWeapon + ")";
+
+    StartCoroutine(WeaponTimer());
+  }
+
+  private IEnumerator WeaponTimer()
+  {
+    // Wait for seconds, update text each second
+    for (int i = _secondsToNextWeapon; i > 0; i--)
+    {
+      _weaponNameText.text = "Weapon: " + _weaponInventory[_currentWeaponIndex].WeaponName + " (" + i + ")";
+      yield return new WaitForSeconds(1f);
+    }
+
+    RandomNextWeapon();
+  }
+
+  public void RandomNextWeapon()
+  {
+    int randomIndex = Random.Range(0, _weaponInventory.Length);
+    while (randomIndex == _currentWeaponIndex)
+    {
+      randomIndex = Random.Range(0, _weaponInventory.Length);
+    }
+
+    _currentWeaponIndex = randomIndex;
+    EquipWeapon(_currentWeaponIndex);
   }
 }

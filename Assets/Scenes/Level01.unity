@@ -7008,7 +7008,7 @@ MonoBehaviour:
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
-  m_FillAmount: 1
+  m_FillAmount: 0.403
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
@@ -14922,7 +14922,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Weapon: Boulder Gun'
+  m_text: 'Weapon: Boulder Gun (10)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15086,7 +15086,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 1
+  m_Value: 0.403
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -16342,6 +16342,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d612cee9fa49fec4da24c05f63555f55, type: 2}
   - {fileID: 11400000, guid: 88534d0f55839bf4c98b31af61868112, type: 2}
   _reloadSlider: {fileID: 1567563379}
+  _secondsToNextWeapon: 10
+  _weaponNameText: {fileID: 1565336864}
 --- !u!43 &1952092557
 Mesh:
   m_ObjectHideFlags: 0

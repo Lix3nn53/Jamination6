@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8133062469baea147ac9547522b50579, type: 3}
   m_Name: FlameGun
   m_EditorClassIdentifier: 
+  _weaponName: Flame Gun
   _weaponPrefab: {fileID: 4025431998681535795, guid: 06bb2ccadf69d3e4d8de994cd99c7c2d, type: 3}
