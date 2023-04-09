@@ -69,8 +69,8 @@ Material:
     - _Voronoi_Angle_Offset: 6
     - _Voronoi_Cell_Density: 6
     m_Colors:
-    - _Color: {r: 0, g: 0.36089763, b: 0.62352943, a: 1}
-    - _Color_1: {r: 0, g: 1, b: 0.90998363, a: 1}
+    - _Color: {r: 0, g: 0.4392157, b: 1, a: 1}
+    - _Color_1: {r: 0, g: 1, b: 1, a: 1}
     - _TexScale: {r: 2, g: 2, b: 0, a: 0}
     - _Vector2: {r: 0.6, g: 0.6, b: 0, a: 0}
   m_BuildTextureStacks: []

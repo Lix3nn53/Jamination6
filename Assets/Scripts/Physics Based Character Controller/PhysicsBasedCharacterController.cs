@@ -78,6 +78,10 @@ public class PhysicsBasedCharacterController : MonoBehaviour
   // Aim
   private IsometricAiming _isometricAiming;
 
+  // Slow
+  private bool _isSlowed = false;
+  private float _slowFactor = 0.5f;
+
   /// <summary>
   /// Prepare frequently used variables.
   /// </summary>
@@ -448,6 +452,10 @@ public class PhysicsBasedCharacterController : MonoBehaviour
     float velDot = Vector3.Dot(m_UnitGoal, unitVel);
     float accel = _acceleration * _accelerationFactorFromDot.Evaluate(velDot);
     Vector3 goalVel = m_UnitGoal * _maxSpeed * _speedFactor;
+    if (_isSlowed)
+    {
+      goalVel *= _slowFactor;
+    }
     Rigidbody hitBody = rayHit.rigidbody;
     _m_GoalVel = Vector3.MoveTowards(_m_GoalVel,
                                     goalVel,
@@ -471,6 +479,11 @@ public class PhysicsBasedCharacterController : MonoBehaviour
   /// <param name="rayHit">The rayHit towards the platform.</param>
   private void CharacterJump(Vector3 jumpInput, bool grounded, RaycastHit rayHit)
   {
+    if (_isSlowed)
+    {
+      return;
+    }
+
     _timeSinceJumpPressed += Time.fixedDeltaTime;
     _timeSinceJump += Time.fixedDeltaTime;
     if (_rb.velocity.y < 0)
@@ -521,5 +534,18 @@ public class PhysicsBasedCharacterController : MonoBehaviour
         }
       }
     }
+  }
+
+  public void Slow(float slowFactor, float slowDuration)
+  {
+    _slowFactor = slowFactor;
+    _isSlowed = true;
+    StartCoroutine(SlowTimer(slowDuration));
+  }
+
+  private IEnumerator SlowTimer(float slowDuration)
+  {
+    yield return new WaitForSeconds(slowDuration);
+    _isSlowed = false;
   }
 }

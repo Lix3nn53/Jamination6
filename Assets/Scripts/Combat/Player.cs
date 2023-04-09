@@ -15,7 +15,6 @@ public class Player : CombatUnit
   }
   public override void OnDeath()
   {
-    Debug.Log("Player died");
     _gameManager.OnGameOverEvent?.Invoke(_gameManager.Score);
     _player.gameObject.SetActive(false);
   }

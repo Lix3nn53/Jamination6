@@ -17,6 +17,7 @@ public abstract class CombatUnit : MonoBehaviour
 
   // Damage Tint
   private Material[] _materials;
+  public Material[] Materials => _materials;
   private float _damageTakeInterval = 0.2f;
   private bool _isTakingDamage = false;
 
@@ -74,8 +75,11 @@ public abstract class CombatUnit : MonoBehaviour
     {
       Die();
     }
-    DamageTintColor();
-    StartCoroutine(DamageTakeCooldown());
+    else
+    {
+      DamageTintColor();
+      StartCoroutine(DamageTakeCooldown());
+    }
     OnTakeDamage();
   }
 

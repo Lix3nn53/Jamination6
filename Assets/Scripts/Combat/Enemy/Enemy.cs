@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : CombatUnit
 {
+  [SerializeField] private Color _colorOnDeath = Color.grey;
   private PhysicsBasedEnemy _physicsBasedEnemy;
   public override void Start()
   {
@@ -14,7 +15,16 @@ public class Enemy : CombatUnit
   public override void OnDeath()
   {
     _physicsBasedEnemy.enabled = false;
-    Destroy(gameObject, 0.5f);
+    // Change Layer
+    gameObject.layer = LayerMask.NameToLayer("Default");
+
+    foreach (Material material in Materials)
+    {
+      material.color = _colorOnDeath;
+    }
+
+    // Remove CombatUnit
+    Destroy(this);
   }
 
   public override void OnMelee()

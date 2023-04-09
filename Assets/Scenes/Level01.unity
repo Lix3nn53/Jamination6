@@ -16338,9 +16338,9 @@ MonoBehaviour:
     m_Bits: 64
   _weaponParent: {fileID: 1071919699}
   _weaponInventory:
-  - {fileID: 11400000, guid: d612cee9fa49fec4da24c05f63555f55, type: 2}
   - {fileID: 11400000, guid: d17d45c95ce648e4bb2abd56a09296aa, type: 2}
-  - {fileID: 11400000, guid: 1535aff280926f24c9530f31ae973495, type: 2}
+  - {fileID: 11400000, guid: d612cee9fa49fec4da24c05f63555f55, type: 2}
+  - {fileID: 11400000, guid: 88534d0f55839bf4c98b31af61868112, type: 2}
   _reloadSlider: {fileID: 1567563379}
 --- !u!43 &1952092557
 Mesh:
@@ -16708,9 +16708,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c751b05708dc86c4d96824275acdb0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weightedList:
+  _weightedList:
   - {fileID: 11400000, guid: 0631deb4123f7d6419f763b11d4204c9, type: 2}
-  spawnRate: 5
+  _spawnRate: 5
+  _maxScaleMultiplier: 1.5
 --- !u!4 &2085124508
 Transform:
   m_ObjectHideFlags: 0
@@ -17130,3 +17131,60 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 99b5491f710442a4cb98153f635bbc23, type: 3}
+--- !u!1001 &5529974550696433946
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_RootOrder
+      value: 21
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273165, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 130638033897273169, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}
+      propertyPath: m_Name
+      value: FreezeProjectile
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 1f4b4f41d8947b4409674b59d507eaab, type: 3}

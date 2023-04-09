@@ -6,10 +6,11 @@ public class EnemySpawner : MonoBehaviour
 {
 
   // Define a list of weighted items
-  [SerializeField] private List<EnemySpawnerItemSO> weightedList = new List<EnemySpawnerItemSO>();
+  [SerializeField] private List<EnemySpawnerItemSO> _weightedList = new List<EnemySpawnerItemSO>();
 
   [Header("Spawn Settings")]
-  [SerializeField] private float spawnRate = 1f;
+  [SerializeField] private float _spawnRate = 1f;
+  [SerializeField] private float _maxScaleMultiplier = 1.5f;
 
   private void Start()
   {
@@ -23,7 +24,7 @@ public class EnemySpawner : MonoBehaviour
     while (true)
     {
       Spawn();
-      yield return new WaitForSeconds(spawnRate);
+      yield return new WaitForSeconds(_spawnRate);
     }
   }
 
@@ -36,7 +37,13 @@ public class EnemySpawner : MonoBehaviour
     EnemySpawnerItemSO item = SelectWeightedItem();
 
     // Spawn the item
-    Instantiate(item.Prefab, spawnLocation.position, spawnLocation.rotation);
+    GameObject spawned = Instantiate(item.Prefab, spawnLocation.position, spawnLocation.rotation);
+
+    // Random scale
+    float randomScale = Random.Range(1f, _maxScaleMultiplier);
+    Vector3 newScale = spawned.transform.localScale;
+    newScale *= randomScale;
+    spawned.transform.localScale = newScale;
   }
 
   private Transform GetRandomSpawnLocation()
@@ -49,7 +56,7 @@ public class EnemySpawner : MonoBehaviour
   {
     // Calculate the total weight of all items
     float totalWeight = 0;
-    foreach (EnemySpawnerItemSO item in weightedList)
+    foreach (EnemySpawnerItemSO item in _weightedList)
     {
       totalWeight += item.Weight;
     }
@@ -59,7 +66,7 @@ public class EnemySpawner : MonoBehaviour
 
     // Loop through the items and subtract their weight from the random number
     // until we find the selected item
-    foreach (EnemySpawnerItemSO item in weightedList)
+    foreach (EnemySpawnerItemSO item in _weightedList)
     {
       if (randomWeight < item.Weight)
       {

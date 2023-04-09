@@ -56,6 +56,11 @@ public class PhysicsBasedEnemy : MonoBehaviour
   [SerializeField] private AnimationCurve _maxAccelerationForceFactorFromDot;
   [SerializeField] private Vector3 _moveForceScale = new Vector3(1f, 0f, 1f);
 
+
+  // Slow
+  private bool _isSlowed = false;
+  private float _slowFactor = 0.5f;
+
   /// <summary>
   /// Prepare frequently used variables.
   /// </summary>
@@ -344,6 +349,10 @@ public class PhysicsBasedEnemy : MonoBehaviour
     float velDot = Vector3.Dot(m_UnitGoal, unitVel);
     float accel = _acceleration * _accelerationFactorFromDot.Evaluate(velDot);
     Vector3 goalVel = m_UnitGoal * _maxSpeed * _speedFactor;
+    if (_isSlowed)
+    {
+      goalVel *= _slowFactor;
+    }
     Rigidbody hitBody = rayHit.rigidbody;
     _m_GoalVel = Vector3.MoveTowards(_m_GoalVel,
                                     goalVel,
@@ -356,5 +365,18 @@ public class PhysicsBasedEnemy : MonoBehaviour
     Vector3 position = transform.position + new Vector3(0f, transform.localScale.y * _leanFactor, 0f);
 
     _rb.AddForceAtPosition(force, position); // Using AddForceAtPosition in order to both move the player and cause the play to lean in the direction of input.
+  }
+
+  public void Slow(float slowFactor, float slowDuration)
+  {
+    _slowFactor = slowFactor;
+    _isSlowed = true;
+    StartCoroutine(SlowTimer(slowDuration));
+  }
+
+  private IEnumerator SlowTimer(float slowDuration)
+  {
+    yield return new WaitForSeconds(slowDuration);
+    _isSlowed = false;
   }
 }
