@@ -6,15 +6,18 @@ using Lix.Core;
 public class Player : CombatUnit
 {
   private GameManager _gameManager;
+  private Player _player;
   public override void Start()
   {
     base.Start();
     _gameManager = ServiceLocator.Get<GameManager>();
+    _player = ServiceLocator.Get<Player>();
   }
   public override void OnDeath()
   {
     Debug.Log("Player died");
     _gameManager.OnGameOverEvent?.Invoke(_gameManager.Score);
+    _player.gameObject.SetActive(false);
   }
 
   public override void OnMelee()

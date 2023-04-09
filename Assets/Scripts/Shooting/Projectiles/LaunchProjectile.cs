@@ -8,6 +8,8 @@ public class LaunchProjectile : MonoBehaviour
   [SerializeField] private Transform _launchPoint;
   [SerializeField] private GameObject _projectilePrefab;
   [SerializeField] private float _timeToArrive = 2f;
+  [SerializeField] private float _reloadTime = 2f;
+  public float ReloadTime => _reloadTime;
 
   // public void Launch(Vector3 playerVelocity)
   // {

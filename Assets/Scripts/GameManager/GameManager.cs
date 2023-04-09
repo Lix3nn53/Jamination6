@@ -36,6 +36,11 @@ public class GameManager : MonoBehaviour
     SceneManager.sceneLoaded += OnSceneLoaded;
   }
 
+  private void OnDestroy()
+  {
+    SceneManager.sceneLoaded -= OnSceneLoaded;
+  }
+
   void OnSceneLoaded(Scene scene, LoadSceneMode mode)
   {
     InternalDebug.Log("OnSceneLoaded: " + scene.name);

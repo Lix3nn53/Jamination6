@@ -18,6 +18,12 @@ namespace Lix.Core
     {
       IDictionary<Type, ServiceDescriptor> serviceDescriptors = GetServiceDescriptors();
 
+      // Return if service is already registered
+      if (serviceDescriptors.ContainsKey(serviceDescriptor.ServiceType))
+      {
+        return;
+      }
+
       if (serviceDescriptor.Implementation is MonoBehaviour)
       {
         Debug.Log(string.Format("New service {0} is registered!", serviceDescriptor.ServiceType), (MonoBehaviour)serviceDescriptor.Implementation);

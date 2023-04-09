@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using Lix.Core;
 
 public class PlayerWeaponController : MonoBehaviour
@@ -15,19 +16,58 @@ public class PlayerWeaponController : MonoBehaviour
   private int _currentWeaponIndex = 0;
   private LaunchProjectile _currentLauncher;
 
+  // Cooldown and reload
+  private bool _isReloading = false;
+  [SerializeField] private Slider _reloadSlider;
+
   // Start is called before the first frame update
-  void Start()
+  void Awake()
   {
     EquipWeapon(_currentWeaponIndex);
-
     _inputListener = ServiceLocator.Get<InputListener>();
+
+    _reloadSlider.value = 1f;
+  }
+
+  private void OnEnable()
+  {
     _inputListener.GetAction(InputActionType.Fire).performed += Fire;
+  }
+
+  private void OnDisable()
+  {
+    _inputListener.GetAction(InputActionType.Fire).performed -= Fire;
   }
 
   public void Fire(UnityEngine.InputSystem.InputAction.CallbackContext context)
   {
+    if (_isReloading)
+    {
+      return;
+    }
+
     _currentLauncher.LaunchToMouse();
 
+    StartCoroutine(StartReload());
+    StartCoroutine(AnimateReloadSlider());
+  }
+
+  private IEnumerator StartReload()
+  {
+    _isReloading = true;
+    yield return new WaitForSeconds(_currentLauncher.ReloadTime);
+    _isReloading = false;
+  }
+
+  private IEnumerator AnimateReloadSlider()
+  {
+    float time = 0f;
+    while (time < _currentLauncher.ReloadTime)
+    {
+      time += Time.deltaTime;
+      _reloadSlider.value = time / _currentLauncher.ReloadTime;
+      yield return null;
+    }
   }
 
   private void Update()
