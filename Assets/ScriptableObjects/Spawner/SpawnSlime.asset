@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: SpawnSlime
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3091736472397917657, guid: 99b5491f710442a4cb98153f635bbc23, type: 3}
-  Weight: 20
+  Weight: 80

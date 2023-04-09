@@ -25,11 +25,14 @@ public class PlayerWeaponController : MonoBehaviour
   [SerializeField] private int _secondsToNextWeapon = 10;
   [SerializeField] private TMP_Text _weaponNameText;
 
+  private AudioManager _audioManager;
+
   // Start is called before the first frame update
   void Awake()
   {
     EquipWeapon(_currentWeaponIndex);
     _inputListener = ServiceLocator.Get<InputListener>();
+    _audioManager = ServiceLocator.Get<AudioManager>();
 
     _reloadSlider.value = 1f;
   }
@@ -53,6 +56,7 @@ public class PlayerWeaponController : MonoBehaviour
 
     _currentLauncher.LaunchToMouse();
 
+    _audioManager.Play("Fire");
     StartCoroutine(StartReload());
     StartCoroutine(AnimateReloadSlider());
   }
@@ -60,7 +64,9 @@ public class PlayerWeaponController : MonoBehaviour
   private IEnumerator StartReload()
   {
     _isReloading = true;
-    yield return new WaitForSeconds(_currentLauncher.ReloadTime);
+    yield return new WaitForSeconds(0.2f);
+    _audioManager.Play("Reload");
+    yield return new WaitForSeconds(_currentLauncher.ReloadTime - 0.2f);
     _isReloading = false;
   }
 

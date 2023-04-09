@@ -47,7 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _launchPoint: {fileID: 4025431999798267034}
   _projectilePrefab: {fileID: 130638033897273169, guid: aa1e4597a4da71546a274ca601655207, type: 3}
-  _timeToArrive: 2
+  _timeToArrive: 1.6
+  _reloadTime: 2
 --- !u!1 &4025431998907036638
 GameObject:
   m_ObjectHideFlags: 0

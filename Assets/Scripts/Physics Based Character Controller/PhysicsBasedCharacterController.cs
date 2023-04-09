@@ -530,7 +530,7 @@ public class PhysicsBasedCharacterController : MonoBehaviour
           _timeSinceJumpPressed = _jumpBuffer; // So as to not activate further jumps, in the case that the player lands before the jump timer surpasses the buffer.
           _timeSinceJump = 0f;
 
-          FindObjectOfType<AudioManager>().Play("Jump");
+          _audioManager.Play("Jump");
         }
       }
     }

@@ -29,8 +29,6 @@ public abstract class AreaOfEffect : MonoBehaviour
   {
     Collider[] colliders = Physics.OverlapSphere(transform.position, _sphereCollider.radius * transform.localScale.x);
 
-    Debug.Log("Colliders: " + colliders.Length);
-
     foreach (Collider collider in colliders)
     {
       CombatUnit combatUnit = collider.GetComponent<CombatUnit>();
