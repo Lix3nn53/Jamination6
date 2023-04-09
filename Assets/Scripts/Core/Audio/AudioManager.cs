@@ -58,7 +58,6 @@ namespace Lix.Core
     {
       if (!soundDic.ContainsKey(name))
       {
-        Debug.LogWarning("Sound: " + name + " not found");
         return null;
       }
 

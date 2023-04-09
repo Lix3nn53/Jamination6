@@ -33,15 +33,6 @@ public class GameManager : MonoBehaviour
   {
     this.score += add;
     OnScoreChangeEvent?.Invoke(score);
-
-    int targetScore = GetTargetScore(currentLevel);
-
-    if (score >= targetScore)
-    {
-      Time.timeScale = 0;
-      OnLevelCompleteEvent?.Invoke(this.score);
-      this.currentLevel++;
-    }
   }
 
   public void GameOver()
