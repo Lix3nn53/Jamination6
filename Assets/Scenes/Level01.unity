@@ -16338,9 +16338,9 @@ MonoBehaviour:
     m_Bits: 64
   _weaponParent: {fileID: 1071919699}
   _weaponInventory:
+  - {fileID: 11400000, guid: d612cee9fa49fec4da24c05f63555f55, type: 2}
   - {fileID: 11400000, guid: d17d45c95ce648e4bb2abd56a09296aa, type: 2}
   - {fileID: 11400000, guid: 1535aff280926f24c9530f31ae973495, type: 2}
-  - {fileID: 11400000, guid: d612cee9fa49fec4da24c05f63555f55, type: 2}
   _reloadSlider: {fileID: 1567563379}
 --- !u!43 &1952092557
 Mesh:

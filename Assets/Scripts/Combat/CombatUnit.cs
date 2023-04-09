@@ -17,6 +17,8 @@ public abstract class CombatUnit : MonoBehaviour
 
   // Damage Tint
   private Material[] _materials;
+  private float _damageTakeInterval = 0.2f;
+  private bool _isTakingDamage = false;
 
   // Start is called before the first frame update
   public virtual void Start()
@@ -55,7 +57,7 @@ public abstract class CombatUnit : MonoBehaviour
     CombatUnit combatUnit = collision.gameObject.GetComponent<CombatUnit>();
     if (combatUnit != null)
     {
-      // check if combat unit is player type
+      // check if combat unit is player type because we only want to melee attack the player
       if (combatUnit is Player)
       {
         MeleeAttack(combatUnit);
@@ -65,12 +67,15 @@ public abstract class CombatUnit : MonoBehaviour
 
   public void TakeDamage(int damage)
   {
+    if (_isTakingDamage) return;
+
     _health -= damage;
     if (_health <= 0)
     {
       Die();
     }
     DamageTintColor();
+    StartCoroutine(DamageTakeCooldown());
     OnTakeDamage();
   }
 
@@ -95,8 +100,15 @@ public abstract class CombatUnit : MonoBehaviour
   {
     Color originalColor = material.color;
     material.color = Color.red;
-    yield return new WaitForSeconds(0.2f);
+    yield return new WaitForSeconds(_damageTakeInterval);
     material.color = originalColor;
+  }
+
+  private IEnumerator DamageTakeCooldown()
+  {
+    _isTakingDamage = true;
+    yield return new WaitForSeconds(_damageTakeInterval);
+    _isTakingDamage = false;
   }
 
   private void PushOnMelee(CombatUnit target)

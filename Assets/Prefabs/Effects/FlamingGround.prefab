@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 2180620838217039688}
   - component: {fileID: 2180620838217039691}
   - component: {fileID: 8482994624992674394}
-  m_Layer: 0
+  - component: {fileID: 90340525613347578}
+  - component: {fileID: 279345654578438606}
+  m_Layer: 2
   m_Name: FlamingGround
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,6 +103,33 @@ MonoBehaviour:
   _startValue: 1
   _endValue: 0.4
   _duration: 1
+--- !u!135 &90340525613347578
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180620838217039701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.9303051
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &279345654578438606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2180620838217039701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 713a1baca550cf6448eafe2da8124912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _interval: 1
+  _damage: 5
 --- !u!1 &7030668386156037097
 GameObject:
   m_ObjectHideFlags: 0
@@ -112,7 +141,7 @@ GameObject:
   - component: {fileID: 7030668386156037096}
   - component: {fileID: 7030668386156037094}
   - component: {fileID: 7030668386156037095}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
