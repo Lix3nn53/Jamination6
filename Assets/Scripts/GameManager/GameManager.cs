@@ -7,41 +7,32 @@ using Lix.Core;
 
 public class GameManager : MonoBehaviour
 {
-  public int startYear = 2022;
   [SerializeField] private int score;
-  [SerializeField] private int money;
-  public int Money { get { return money; } private set { money = value; } }
-  [SerializeField] private int moneyPerHit = 100000;
-  [SerializeField] private int yearPeriod = 10;
-  [SerializeField] private int targetScoreBase = 60;
-  [SerializeField] private int targetScoreAddition = 20;
+  public int Score => score;
 
-  // State
-  public int currentLevel = 1;
+  [SerializeField] private int scorePerSecond;
+
+  // Score to complete level
+  [SerializeField] private int currentLevel = 1;
+  [SerializeField] private int targetScoreBase;
+  [SerializeField] private int targetScoreAddition;
 
   // Events
 
   public delegate void OnScoreChange(int score);
-  public event OnScoreChange OnScoreChangeEvent;
+  public OnScoreChange OnScoreChangeEvent;
+  public delegate void OnPlayerHealthChange(int currentHP);
+  public OnPlayerHealthChange OnPlayerHealthChangeEvent;
 
-  public delegate void OnGameOver(int year);
-  public event OnGameOver OnGameOverEvent;
+  public delegate void OnGameOver(int score);
+  public OnGameOver OnGameOverEvent;
 
-  public delegate void OnLevelComplete(int year);
-  public event OnLevelComplete OnLevelCompleteEvent;
-
-  public delegate void OnMissileHitStar();
-  public event OnMissileHitStar OnMissileHitStarEvent;
-
-  public delegate void OnMoneyChange(int money);
-  public event OnMoneyChange OnMoneyChangeEvent;
+  public delegate void OnLevelComplete(int score);
+  public OnLevelComplete OnLevelCompleteEvent;
 
   void Start()
   {
-    this.startYear = DateTime.Now.Year;
-
     StartScore();
-    OnMoneyChangeEvent?.Invoke(money);
     SceneManager.sceneLoaded += OnSceneLoaded;
   }
 
@@ -52,6 +43,10 @@ public class GameManager : MonoBehaviour
     {
       StartScore();
     }
+    else
+    {
+      StopScore();
+    }
   }
 
   public void StartScore()
@@ -59,7 +54,7 @@ public class GameManager : MonoBehaviour
     InternalDebug.Log("StartLevel");
     this.score = 0;
 
-    InvokeRepeating("AddScore", 0f, yearPeriod);
+    InvokeRepeating("AddScore", 1f, scorePerSecond);
   }
 
   public void StopScore()
@@ -77,7 +72,7 @@ public class GameManager : MonoBehaviour
     if (score >= targetScore)
     {
       Time.timeScale = 0;
-      OnLevelCompleteEvent?.Invoke(this.startYear + this.score);
+      OnLevelCompleteEvent?.Invoke(this.score);
       StopScore();
       this.currentLevel++;
     }
@@ -91,17 +86,8 @@ public class GameManager : MonoBehaviour
     int targetScore = GetTargetScore(currentLevel);
     int prevTargetScoreTotal = targetScoreTotal - GetTargetScore(currentLevel);
 
-    int currentYear = this.startYear + prevTargetScoreTotal + score;
-    OnGameOverEvent?.Invoke(currentYear);
+    OnGameOverEvent?.Invoke(score);
     this.currentLevel = 1;
-    this.money = 0;
-  }
-
-  public void MissileHitStar()
-  {
-    money += moneyPerHit;
-    OnMoneyChangeEvent?.Invoke(money);
-    OnMissileHitStarEvent?.Invoke();
   }
 
   public int GetTargetScore(int level)
@@ -112,13 +98,6 @@ public class GameManager : MonoBehaviour
     }
 
     return ((level - 1) * targetScoreAddition) + targetScoreBase;
-  }
-
-  public int AddMoney(int amount)
-  {
-    money += amount;
-    OnMoneyChangeEvent?.Invoke(money);
-    return money;
   }
 
   public int GetTotalTargetScore()

@@ -177,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _life: -1
   _spawnOnHitPrefab: {fileID: 0}
+  _delayStartHurtPlayer: 0.6
 --- !u!114 &752646752647859310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +190,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe7f7acbed95564587edf373e2ffe2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _harmfulFor: 3
+  _damage: 20
+  _pushPower: 40
+  _harmfulStartAt: 0.6
+  _harmfulFor: 4
   _harmfulColor: {r: 0.7058824, g: 0.1882353, b: 0.1882353, a: 1}
   _renderer: {fileID: 0}

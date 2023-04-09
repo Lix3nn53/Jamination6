@@ -7,7 +7,7 @@ using TMPro;
 public class MenuGameOver : MonoBehaviour
 {
 
-  [SerializeField] private TMP_Text score;
+  [SerializeField] private TMP_Text scoreText;
 
   private GameManager gameManager;
 
@@ -21,9 +21,9 @@ public class MenuGameOver : MonoBehaviour
       child.gameObject.SetActive(false);
     }
   }
-  public void OnGameOver(int year)
+  public void OnGameOver(int scoreValue)
   {
-    score.text = "You have reached year " + year;
+    scoreText.text = "You score is " + scoreValue;
 
     foreach (Transform child in transform)
     {

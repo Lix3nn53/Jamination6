@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Lix.Core;
 
 public class FogTrigger : MonoBehaviour
 {
   [SerializeField] private Cinemachine.CinemachineVirtualCamera vcam;
+
+  private GameManager _gameManager;
+
+  private void Start()
+  {
+    _gameManager = ServiceLocator.Get<GameManager>();
+  }
 
   private void OnTriggerEnter(Collider other)
   {
@@ -13,6 +21,9 @@ public class FogTrigger : MonoBehaviour
       // Stop tracking the player
       vcam.Follow = null;
       vcam.LookAt = null;
+
+      _gameManager.OnPlayerHealthChangeEvent?.Invoke(0);
+      _gameManager.OnGameOverEvent?.Invoke(_gameManager.Score);
 
       StartCoroutine(StopPlayerPhysics(other));
     }

@@ -5,8 +5,8 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
   [SerializeField] private float _life = 5;
-
   [SerializeField] private GameObject _spawnOnHitPrefab;
+  [SerializeField] private float _delayStartHurtPlayer = 0.4f;
 
   void Start()
   {
@@ -15,13 +15,13 @@ public class Projectile : MonoBehaviour
       Destroy(gameObject, _life);
     }
 
-    StartCoroutine(ActivatePlayerCollisionAfterTime(0.4f));
+    StartCoroutine(ActivatePlayerCollisionAfterTime(_delayStartHurtPlayer));
   }
 
   private IEnumerator ActivatePlayerCollisionAfterTime(float time)
   {
     yield return new WaitForSeconds(time);
-    gameObject.layer = LayerMask.NameToLayer("Enemy");
+    gameObject.layer = LayerMask.NameToLayer("Default");
   }
 
   private void OnCollisionEnter(Collision collision)
