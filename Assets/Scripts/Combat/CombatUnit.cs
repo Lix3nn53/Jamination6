@@ -55,7 +55,11 @@ public abstract class CombatUnit : MonoBehaviour
     CombatUnit combatUnit = collision.gameObject.GetComponent<CombatUnit>();
     if (combatUnit != null)
     {
-      MeleeAttack(combatUnit);
+      // check if combat unit is player type
+      if (combatUnit is Player)
+      {
+        MeleeAttack(combatUnit);
+      }
     }
   }
 
