@@ -16,12 +16,17 @@ public class FogTrigger : MonoBehaviour
 
       StartCoroutine(StopPlayerPhysics(other));
     }
+    else
+    {
+      // destroy other
+      Destroy(other.gameObject, 2f);
+    }
   }
 
   // Stop player physics after sometime
   private IEnumerator StopPlayerPhysics(Collider other)
   {
-    yield return new WaitForSeconds(1f);
+    yield return new WaitForSeconds(2f);
     // Stop player physics
     // player.GetComponent<Rigidbody>().isKinematic = true;
     other.gameObject.SetActive(false);

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Shader Graphs_Smoke
+  m_Name: FreezeSmoke
   m_Shader: {fileID: -6465566751694194690, guid: 9dc178e88ee5fd049a0ca973ea2a6047, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
@@ -56,7 +56,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0.1
-    - _Displace: 0.2
+    - _Displace: 0
     - _Dissolve: -1
     - _FresnelMultiply: 5
     - _FresnelMultiply_2: 10
@@ -65,12 +65,12 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Radius: 20
-    - _ScrollSpeed: 0.02
-    - _Voronoi_Angle_Offset: 5
-    - _Voronoi_Cell_Density: 10
+    - _ScrollSpeed: 0.1
+    - _Voronoi_Angle_Offset: 6
+    - _Voronoi_Cell_Density: 6
     m_Colors:
-    - _Color: {r: 0.38781595, g: 0.7830189, b: 0.43162414, a: 1}
-    - _Color_1: {r: 0.06488074, g: 0.509434, b: 0.3289718, a: 1}
-    - _TexScale: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 0, g: 0.36089763, b: 0.62352943, a: 1}
+    - _Color_1: {r: 0, g: 1, b: 0.90998363, a: 1}
+    - _TexScale: {r: 2, g: 2, b: 0, a: 0}
     - _Vector2: {r: 0.6, g: 0.6, b: 0, a: 0}
   m_BuildTextureStacks: []

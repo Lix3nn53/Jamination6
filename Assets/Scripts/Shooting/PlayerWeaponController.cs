@@ -18,9 +18,7 @@ public class PlayerWeaponController : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    GameObject weapon = _weaponInventory[_currentWeaponIndex].Equip(_weaponParent);
-
-    _currentLauncher = weapon.GetComponent<LaunchProjectile>();
+    EquipWeapon(_currentWeaponIndex);
 
     _inputListener = ServiceLocator.Get<InputListener>();
     _inputListener.GetAction(InputActionType.Fire).performed += Fire;
@@ -51,5 +49,27 @@ public class PlayerWeaponController : MonoBehaviour
     {
       _cursor.SetActive(false);
     }
+  }
+
+  public void NextWeapon()
+  {
+    _currentWeaponIndex++;
+    if (_currentWeaponIndex >= _weaponInventory.Length)
+    {
+      _currentWeaponIndex = 0;
+    }
+
+    EquipWeapon(_currentWeaponIndex);
+  }
+
+  private void EquipWeapon(int index)
+  {
+    foreach (Transform child in _weaponParent)
+    {
+      Destroy(child.gameObject);
+    }
+
+    GameObject weapon = _weaponInventory[index].Equip(_weaponParent);
+    _currentLauncher = weapon.GetComponent<LaunchProjectile>();
   }
 }
