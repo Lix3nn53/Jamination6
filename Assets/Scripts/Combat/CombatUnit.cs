@@ -12,7 +12,11 @@ public abstract class CombatUnit : MonoBehaviour
   public int MeleeDamage => _meleeDamage;
   [SerializeField] float _meleeCooldown = 0.1f;
   public float MeleeCooldown => _meleeCooldown;
+  [SerializeField] private float _pushForce = 10f;
   private bool _canMelee = true;
+
+  // Damage Tint
+  private Material[] _materials;
 
   // Start is called before the first frame update
   public virtual void Start()
@@ -23,13 +27,17 @@ public abstract class CombatUnit : MonoBehaviour
     {
       _canMelee = false;
     }
+
+    // Damage Tint
+    _materials = GetComponentInChildren<Renderer>().materials;
   }
 
   public void MeleeAttack(CombatUnit target)
   {
     target.TakeDamage(MeleeDamage);
-    OnMelee();
+    PushOnMelee(target);
     StartCoroutine(MeleeCooldownCoroutine());
+    OnMelee();
   }
 
   private IEnumerator MeleeCooldownCoroutine()
@@ -58,6 +66,7 @@ public abstract class CombatUnit : MonoBehaviour
     {
       Die();
     }
+    DamageTintColor();
     OnTakeDamage();
   }
 
@@ -69,4 +78,31 @@ public abstract class CombatUnit : MonoBehaviour
   public abstract void OnDeath();
   public abstract void OnMelee();
   public abstract void OnTakeDamage();
+
+  private void DamageTintColor()
+  {
+    foreach (Material material in _materials)
+    {
+      StartCoroutine(DamageTintColorForOne(material));
+    }
+  }
+
+  private IEnumerator DamageTintColorForOne(Material material)
+  {
+    Color originalColor = material.color;
+    material.color = Color.red;
+    yield return new WaitForSeconds(0.2f);
+    material.color = originalColor;
+  }
+
+  private void PushOnMelee(CombatUnit target)
+  {
+    Rigidbody rb = target.GetComponent<Rigidbody>();
+    if (rb != null)
+    {
+      Vector3 direction = target.transform.position - transform.position;
+      direction.Normalize();
+      rb.AddForce(direction * _pushForce, ForceMode.Impulse);
+    }
+  }
 }

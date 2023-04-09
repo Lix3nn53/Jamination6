@@ -23,7 +23,7 @@ public class MenuHealth : MonoBehaviour
 
     _gameManager.OnPlayerHealthChangeEvent += OnHealthChange;
 
-    OnHealthChange(_player.Health);
+    OnHealthChange(_player.MaxHealth);
   }
 
   private void OnHealthChange(int currentHP)

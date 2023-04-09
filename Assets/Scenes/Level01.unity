@@ -10933,7 +10933,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 719fa49514ed5b44eb388db53fd30f4c, type: 2}
+  - {fileID: 2100000, guid: 6e9a82de05f69e446a80b6d6136abc05, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14669,6 +14669,7 @@ MonoBehaviour:
   _maxHealth: 100
   _meleeDamage: 0
   _meleeCooldown: 0
+  _pushForce: 10
 --- !u!1 &1624326387
 GameObject:
   m_ObjectHideFlags: 0
@@ -21111,6 +21112,7 @@ MonoBehaviour:
   _maxHealth: 20
   _meleeDamage: 10
   _meleeCooldown: 0.5
+  _pushForce: 30
 --- !u!135 &1984199967
 SphereCollider:
   m_ObjectHideFlags: 0

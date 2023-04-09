@@ -5,7 +5,7 @@ using UnityEngine;
 public class Boulder : MonoBehaviour
 {
   [SerializeField] private int _damage = 20;
-  [SerializeField] private float _pushPower = 20f;
+  [SerializeField] private float _pushForce = 40f;
   [SerializeField] private float _harmfulStartAt = 1f;
   [SerializeField] private float _harmfulFor = 4f;
   [SerializeField] private Color _harmfulColor = Color.red;
@@ -57,7 +57,7 @@ public class Boulder : MonoBehaviour
         // push combatUnit away from boulder
         Vector3 direction = combatUnit.transform.position - transform.position;
         direction.Normalize();
-        rb.AddForce(direction * _pushPower, ForceMode.Impulse);
+        rb.AddForce(direction * _pushForce, ForceMode.Impulse);
       }
     }
   }

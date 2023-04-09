@@ -19,7 +19,6 @@ public class Enemy : CombatUnit
 
   public override void OnMelee()
   {
-
   }
 
   public override void OnTakeDamage()
