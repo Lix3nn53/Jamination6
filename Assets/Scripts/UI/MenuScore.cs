@@ -21,7 +21,7 @@ public class MenuScore : MonoBehaviour
 
   public void OnScoreChange(int score)
   {
-    text.text = score + "";
+    text.text = "Score: " + score + "";
   }
 
   private void OnDestroy()

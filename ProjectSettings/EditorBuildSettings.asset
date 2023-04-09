@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Final Levels/Menu.unity
     guid: db13eee2347337840a23e5f0b984c3ef
   - enabled: 1
-    path: Assets/Scenes/Final Levels/Level01.unity
-    guid: bd3cb042f3b221941a39a2bdfe1cb8b2
+    path: Assets/Scenes/Final Levels/Test.unity
+    guid: 0b9fdf47c37b4154a904a8a84cd31eca
   m_configObjects: {}

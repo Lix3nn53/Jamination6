@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
   [SerializeField] private int targetScoreAddition;
 
   // Events
-
   public delegate void OnScoreChange(int score);
   public OnScoreChange OnScoreChangeEvent;
   public delegate void OnPlayerHealthChange(int currentHP);
@@ -30,46 +29,9 @@ public class GameManager : MonoBehaviour
   public delegate void OnLevelComplete(int score);
   public OnLevelComplete OnLevelCompleteEvent;
 
-  void Start()
+  public void AddScore(int add)
   {
-    StartScore();
-    SceneManager.sceneLoaded += OnSceneLoaded;
-  }
-
-  private void OnDestroy()
-  {
-    SceneManager.sceneLoaded -= OnSceneLoaded;
-  }
-
-  void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-  {
-    InternalDebug.Log("OnSceneLoaded: " + scene.name);
-    if (scene.buildIndex == 1) // Only scene where score is updated
-    {
-      StartScore();
-    }
-    else
-    {
-      StopScore();
-    }
-  }
-
-  public void StartScore()
-  {
-    InternalDebug.Log("StartLevel");
-    this.score = 0;
-
-    InvokeRepeating("AddScore", 1f, scorePerSecond);
-  }
-
-  public void StopScore()
-  {
-    CancelInvoke("AddScore");
-  }
-
-  void AddScore()
-  {
-    this.score++;
+    this.score += add;
     OnScoreChangeEvent?.Invoke(score);
 
     int targetScore = GetTargetScore(currentLevel);
@@ -78,14 +40,12 @@ public class GameManager : MonoBehaviour
     {
       Time.timeScale = 0;
       OnLevelCompleteEvent?.Invoke(this.score);
-      StopScore();
       this.currentLevel++;
     }
   }
 
   public void GameOver()
   {
-    StopScore();
     int targetScoreTotal = GetTotalTargetScore();
 
     int targetScore = GetTargetScore(currentLevel);
