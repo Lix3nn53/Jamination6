@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Lix.Core;
-using Gizmos = Popcron.Gizmos;
 
 /// <summary>
 /// A floating-capsule oriented physics based character controller. Based on the approach devised by Toyful Games for Very Very Valet.
@@ -467,7 +466,6 @@ public class PhysicsBasedCharacterController : MonoBehaviour
     Vector3 force = Vector3.Scale(neededAccel * _rb.mass, _moveForceScale);
     Vector3 position = transform.position + new Vector3(0f, transform.localScale.y * _leanFactor, 0f);
 
-    Debug.DrawRay(position, force, Color.red);
     _rb.AddForceAtPosition(force, position); // Using AddForceAtPosition in order to both move the player and cause the play to lean in the direction of input.
   }
 
