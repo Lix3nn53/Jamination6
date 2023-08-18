@@ -416,8 +416,9 @@ public class PhysicsBasedCharacterController : MonoBehaviour
   /// <returns>The camera corrected movement input.</returns>
   private Vector3 AdjustInputToFaceCamera(Vector3 moveInput)
   {
-    float facing = Camera.main.transform.eulerAngles.y;
-    return (Quaternion.Euler(0, facing, 0) * moveInput);
+    // float facing = Camera.main.transform.eulerAngles.y;
+    float facing = 270;
+    return Quaternion.Euler(0, facing, 0) * moveInput;
   }
 
   /// <summary>
