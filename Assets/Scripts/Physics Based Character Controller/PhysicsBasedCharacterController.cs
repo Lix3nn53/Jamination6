@@ -394,6 +394,11 @@ public class PhysicsBasedCharacterController : MonoBehaviour
     _moveContext = context.ReadValue<Vector2>();
   }
 
+  public void MoveInputTouchAction(Vector2 moveContext)
+  {
+    _moveContext = moveContext;
+  }
+
   /// <summary>
   /// Reads the player jump input.
   /// </summary>
