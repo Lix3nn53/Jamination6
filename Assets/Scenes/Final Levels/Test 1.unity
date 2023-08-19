@@ -16940,7 +16940,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161577cfe2b66cf429750ae366535ba1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  JoystickSize: {x: 300, y: 300}
+  JoystickSize: {x: 200, y: 200}
   Joystick: {fileID: 1724206972}
 --- !u!43 &1472087754
 Mesh:
@@ -19264,6 +19264,14 @@ PrefabInstance:
     - target: {fileID: 2600031186858390535, guid: 07a51e077eb00ca4d9c8581f788270eb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792910982646095557, guid: 07a51e077eb00ca4d9c8581f788270eb, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792910982646095557, guid: 07a51e077eb00ca4d9c8581f788270eb, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

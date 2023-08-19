@@ -13,7 +13,7 @@ public class PhysicsBasedCharacterController : MonoBehaviour
   private Vector3 _gravitationalForce;
   private Vector3 _rayDir = Vector3.down;
   private Vector3 _previousVelocity = Vector3.zero;
-  private Vector2 _moveContext;
+  private Vector2 _moveContext = Vector2.zero;
   private ParticleSystem.EmissionModule _emission;
 
   [Header("Other:")]
@@ -396,6 +396,7 @@ public class PhysicsBasedCharacterController : MonoBehaviour
 
   public void MoveInputTouchAction(Vector2 moveContext)
   {
+    Debug.Log("MoveInputTouchAction: " + moveContext);
     _moveContext = moveContext;
   }
 

@@ -43,10 +43,17 @@ public class PlayerTouchMovement : MonoBehaviour
             float maxMovement = JoystickSize.x / 2f;
             ETouch.Touch currentTouch = MovedFinger.currentTouch;
 
-            if (Vector2.Distance(
+            Debug.Log($"currentTouch.screenPosition: {currentTouch.screenPosition}");
+            Debug.Log($"Joystick.RectTransform.anchoredPosition: {Joystick.RectTransform.anchoredPosition}");
+
+            float distance = Vector2.Distance(
                     currentTouch.screenPosition,
                     Joystick.RectTransform.anchoredPosition
-                ) > maxMovement)
+                );
+
+            Debug.Log($"Distance: {distance}");
+
+            if (distance > maxMovement)
             {
                 knobPosition = (
                     currentTouch.screenPosition - Joystick.RectTransform.anchoredPosition
@@ -59,6 +66,7 @@ public class PlayerTouchMovement : MonoBehaviour
             }
 
             Joystick.Knob.anchoredPosition = knobPosition;
+            Debug.Log($"Knob Position: {knobPosition}");
             Vector2 movementAmount = knobPosition / maxMovement;
             _physicsBasedCharacterController.MoveInputTouchAction(movementAmount);
         }
@@ -77,7 +85,8 @@ public class PlayerTouchMovement : MonoBehaviour
 
     private void HandleFingerDown(Finger TouchedFinger)
     {
-        if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width / 2f)
+        // if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width / 2f)
+        if (MovementFinger == null && TouchedFinger.screenPosition.x <= Screen.width)
         {
             MovementFinger = TouchedFinger;
             _physicsBasedCharacterController.MoveInputTouchAction(Vector2.zero);
@@ -89,18 +98,22 @@ public class PlayerTouchMovement : MonoBehaviour
 
     private Vector2 ClampStartPosition(Vector2 StartPosition)
     {
-        if (StartPosition.x < JoystickSize.x / 2)
+        if (StartPosition.x < JoystickSize.x)
         {
-            StartPosition.x = JoystickSize.x / 2;
+            StartPosition.x = JoystickSize.x;
+        }
+        else if (StartPosition.x > Screen.width - JoystickSize.x)
+        {
+            StartPosition.x = Screen.width - JoystickSize.x;
         }
 
-        if (StartPosition.y < JoystickSize.y / 2)
+        if (StartPosition.y < JoystickSize.y)
         {
-            StartPosition.y = JoystickSize.y / 2;
+            StartPosition.y = JoystickSize.y;
         }
-        else if (StartPosition.y > Screen.height - JoystickSize.y / 2)
+        else if (StartPosition.y > Screen.height - JoystickSize.y)
         {
-            StartPosition.y = Screen.height - JoystickSize.y / 2;
+            StartPosition.y = Screen.height - JoystickSize.y;
         }
 
         return StartPosition;
