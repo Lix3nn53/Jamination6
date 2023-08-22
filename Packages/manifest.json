@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.inspiaaa.unityhfsm": "https://github.com/Inspiaaa/UnityHFSM.git",
     "com.popcron.gizmos": "https://github.com/popcron/gizmos.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",

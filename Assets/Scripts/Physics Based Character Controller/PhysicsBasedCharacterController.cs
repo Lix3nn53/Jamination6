@@ -396,7 +396,6 @@ public class PhysicsBasedCharacterController : MonoBehaviour
 
   public void MoveInputTouchAction(Vector2 moveContext)
   {
-    Debug.Log("MoveInputTouchAction: " + moveContext);
     _moveContext = moveContext;
   }
 

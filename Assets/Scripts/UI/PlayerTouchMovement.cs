@@ -43,15 +43,10 @@ public class PlayerTouchMovement : MonoBehaviour
             float maxMovement = JoystickSize.x / 2f;
             ETouch.Touch currentTouch = MovedFinger.currentTouch;
 
-            Debug.Log($"currentTouch.screenPosition: {currentTouch.screenPosition}");
-            Debug.Log($"Joystick.RectTransform.anchoredPosition: {Joystick.RectTransform.anchoredPosition}");
-
             float distance = Vector2.Distance(
                     currentTouch.screenPosition,
                     Joystick.RectTransform.anchoredPosition
                 );
-
-            Debug.Log($"Distance: {distance}");
 
             if (distance > maxMovement)
             {
@@ -66,7 +61,6 @@ public class PlayerTouchMovement : MonoBehaviour
             }
 
             Joystick.Knob.anchoredPosition = knobPosition;
-            Debug.Log($"Knob Position: {knobPosition}");
             Vector2 movementAmount = knobPosition / maxMovement;
             _physicsBasedCharacterController.MoveInputTouchAction(movementAmount);
         }
