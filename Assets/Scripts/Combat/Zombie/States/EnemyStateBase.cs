@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 namespace LlamAcademy.FSM
 {
-    public abstract class EnemyStateBase : State<EnemyState, StateEvent>
+    public abstract class EnemyStateBase : State<EnemyState, EnemyStateEvent>
     {
         protected readonly Enemy Enemy;
         protected readonly NavMeshAgent Agent;
@@ -13,18 +13,18 @@ namespace LlamAcademy.FSM
         protected bool RequestedExit;
         protected float ExitTime;
 
-        protected readonly Action<State<EnemyState, StateEvent>> onEnter;
-        protected readonly Action<State<EnemyState, StateEvent>> onLogic;
-        protected readonly Action<State<EnemyState, StateEvent>> onExit;
-        protected readonly Func<State<EnemyState, StateEvent>, bool> canExit;
+        protected readonly Action<State<EnemyState, EnemyStateEvent>> onEnter;
+        protected readonly Action<State<EnemyState, EnemyStateEvent>> onLogic;
+        protected readonly Action<State<EnemyState, EnemyStateEvent>> onExit;
+        protected readonly Func<State<EnemyState, EnemyStateEvent>, bool> canExit;
 
-        public EnemyStateBase(bool needsExitTime, 
-            Enemy Enemy, 
+        public EnemyStateBase(bool needsExitTime,
+            Enemy Enemy,
             float ExitTime = 0.1f,
-            Action<State<EnemyState, StateEvent>> onEnter = null,
-            Action<State<EnemyState, StateEvent>> onLogic = null,
-            Action<State<EnemyState, StateEvent>> onExit = null,
-            Func<State<EnemyState, StateEvent>, bool> canExit = null)
+            Action<State<EnemyState, EnemyStateEvent>> onEnter = null,
+            Action<State<EnemyState, EnemyStateEvent>> onLogic = null,
+            Action<State<EnemyState, EnemyStateEvent>> onExit = null,
+            Func<State<EnemyState, EnemyStateEvent>, bool> canExit = null)
         {
             this.Enemy = Enemy;
             this.onEnter = onEnter;

@@ -10,9 +10,9 @@ namespace LlamAcademy.FSM
 
         public BounceState(
             bool needsExitTime,
-            Enemy Enemy,
+            Zombie Enemy,
             ParticleSystem BounceParticleSystem,
-            Action<State<EnemyState, StateEvent>> onEnter,
+            Action<State<EnemyState, EnemyStateEvent>> onEnter,
             float ExitTime = 0.33f) : base(needsExitTime, Enemy, ExitTime, onEnter)
         {
             this.BounceParticleSystem = BounceParticleSystem;
@@ -24,6 +24,10 @@ namespace LlamAcademy.FSM
             base.OnEnter();
             Animator.Play("Bounce");
             BounceParticleSystem.Play();
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_Color", Color.blue);
+            Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
         }
     }
 }

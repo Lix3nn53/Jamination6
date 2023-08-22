@@ -8,8 +8,8 @@ namespace LlamAcademy.FSM
     {
         public RollState(
             bool needsExitTime,
-            Enemy Enemy,
-            Action<State<EnemyState, StateEvent>> onEnter,
+            Zombie Enemy,
+            Action<State<EnemyState, EnemyStateEvent>> onEnter,
             float ExitTime = 3f) : base(needsExitTime, Enemy, ExitTime, onEnter) { }
 
         public override void OnEnter()
@@ -17,6 +17,10 @@ namespace LlamAcademy.FSM
             Agent.isStopped = true;
             base.OnEnter();
             Animator.Play("Roll");
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_Color", Color.green);
+            Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
         }
 
         public override void OnLogic()

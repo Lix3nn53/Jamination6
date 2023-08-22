@@ -2,26 +2,48 @@ using UnityEngine;
 
 namespace LlamAcademy.FSM
 {
-    public class ChaseState : EnemyStateBase
+    public class HumanChaseState : EnemyStateBase
     {
         private Transform Target;
 
-        public ChaseState(bool needsExitTime, Enemy Enemy, Transform Target) : base(needsExitTime, Enemy) 
+        public HumanChaseState(bool needsExitTime, Human Enemy) : base(needsExitTime, Enemy)
         {
-            this.Target = Target;
         }
 
         public override void OnEnter()
         {
             base.OnEnter();
+
+            GameObject target = Enemy.GetClosestTarget();
+            if (target == null)
+            {
+                fsm.StateCanExit();
+                return;
+            }
+            else
+            {
+                this.Target = target.transform;
+            }
+
             Agent.enabled = true;
             Agent.isStopped = false;
             Animator.Play("Walk");
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_Color", Color.magenta);
+            Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
         }
 
         public override void OnLogic()
         {
             base.OnLogic();
+
+            if (Target == null)
+            {
+                fsm.StateCanExit();
+                return;
+            }
+
             if (!RequestedExit)
             {
                 // you can add a more complex movement prediction algorithm like what 

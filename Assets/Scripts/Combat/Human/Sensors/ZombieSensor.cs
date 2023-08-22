@@ -3,10 +3,10 @@ using UnityEngine;
 namespace LlamAcademy.Sensors
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class PlayerSensor : MonoBehaviour
+    public class ZombieSensor : MonoBehaviour
     {
-        public delegate void PlayerEnterEvent(Transform player);
-        public delegate void PlayerExitEvent(Vector3 lastKnownPosition);
+        public delegate void PlayerEnterEvent(Player player);
+        public delegate void PlayerExitEvent(Player player);
         public event PlayerEnterEvent OnPlayerEnter;
         public event PlayerExitEvent OnPlayerExit;
 
@@ -14,7 +14,7 @@ namespace LlamAcademy.Sensors
         {
             if (other.TryGetComponent(out Player player))
             {
-                OnPlayerEnter?.Invoke(player.transform);
+                OnPlayerEnter?.Invoke(player);
             }
         }
 
@@ -22,7 +22,7 @@ namespace LlamAcademy.Sensors
         {
             if (other.TryGetComponent(out Player player))
             {
-                OnPlayerExit?.Invoke(other.transform.position);
+                OnPlayerExit?.Invoke(player);
             }
         }
     }

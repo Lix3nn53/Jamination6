@@ -5,9 +5,6 @@ namespace LlamAcademy.FSM
         Idle,
         Chase,
         Attack,
-        Roll,
-        Spit,
-        Bounce,
         Die
     }
 }

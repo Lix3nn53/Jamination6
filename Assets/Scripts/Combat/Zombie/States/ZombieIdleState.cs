@@ -2,17 +2,21 @@ using UnityEngine;
 
 namespace LlamAcademy.FSM
 {
-    public class IdleState : EnemyStateBase
+    public class ZombieIdleState : EnemyStateBase
     {
         private float AnimationLoopCount = 0;
 
-        public IdleState(bool needsExitTime, Enemy Enemy) : base(needsExitTime, Enemy) { }
+        public ZombieIdleState(bool needsExitTime, Zombie Enemy) : base(needsExitTime, Enemy) { }
 
         public override void OnEnter()
         {
             base.OnEnter();
             Agent.isStopped = true;
             Animator.Play("Idle_A");
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_Color", Color.gray);
+            Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
         }
 
         public override void OnLogic()
@@ -59,7 +63,7 @@ namespace LlamAcademy.FSM
                     Animator.Play("Idle_C");
                 }
             }
-            
+
             base.OnLogic();
         }
     }

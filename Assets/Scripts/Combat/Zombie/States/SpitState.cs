@@ -11,10 +11,10 @@ namespace LlamAcademy.FSM
         private ObjectPool<Spit> Pool;
 
         public SpitState(
-            bool needsExitTime, 
-            Enemy Enemy, 
-            Spit Prefab, 
-            Action<State<EnemyState, StateEvent>> onEnter,
+            bool needsExitTime,
+            Zombie Enemy,
+            Spit Prefab,
+            Action<State<EnemyState, EnemyStateEvent>> onEnter,
             float ExitTime = 0.33f) : base(needsExitTime, Enemy, ExitTime, onEnter)
         {
             this.Prefab = Prefab;
@@ -44,6 +44,10 @@ namespace LlamAcademy.FSM
             base.OnEnter();
             Animator.Play("Attack");
             Pool.Get();
+
+            var propertyBlock = new MaterialPropertyBlock();
+            propertyBlock.SetColor("_Color", Color.yellow);
+            Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
         }
     }
 }
