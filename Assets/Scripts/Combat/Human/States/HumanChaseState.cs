@@ -4,7 +4,7 @@ public class HumanChaseState : EnemyStateBase
 {
     private Transform Target;
 
-    public HumanChaseState(bool needsExitTime, Human Enemy) : base(needsExitTime, Enemy)
+    public HumanChaseState(bool needsExitTime, Human Human) : base(needsExitTime, Human)
     {
     }
 
@@ -46,7 +46,11 @@ public class HumanChaseState : EnemyStateBase
         {
             // you can add a more complex movement prediction algorithm like what 
             // we did in AI Series 44: https://youtu.be/1Jkg8cKLsC0
-            Agent.SetDestination(Target.position);
+
+            Vector3 normDir = (Target.position - Enemy.transform.position).normalized;
+
+            Agent.SetDestination(Enemy.transform.position - (normDir * 4f));
+            Debug.DrawLine(Enemy.transform.position, Enemy.transform.position - (normDir * 4f), Color.red);
         }
         else if (Agent.remainingDistance <= Agent.stoppingDistance)
         {
