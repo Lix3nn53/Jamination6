@@ -1,10 +1,7 @@
-namespace LlamAcademy.FSM
+public enum EnemyState
 {
-    public enum EnemyState
-    {
-        Idle,
-        Chase,
-        Attack,
-        Die
-    }
+    Idle,
+    Chase,
+    Attack,
+    Die
 }

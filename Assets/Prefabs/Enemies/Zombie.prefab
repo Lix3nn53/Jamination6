@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2349394674215944548}
   - component: {fileID: 5219476069984165251}
   - component: {fileID: 7465446248787968161}
+  - component: {fileID: 5998970709059243137}
   m_Layer: 10
   m_Name: Zombie
   m_TagString: Untagged
@@ -120,7 +121,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee231717d4f12546bda6f295f2905e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TargetsInRange: []
   MeshRenderer: {fileID: 961216801766726803}
+  Animator: {fileID: 0}
+  Agent: {fileID: 0}
   _attackCooldown: 2
   _followPlayerSensor: {fileID: 1854948600249215816}
   _rangeAttackPlayerSensor: {fileID: 446068367260654498}
@@ -147,6 +151,33 @@ MonoBehaviour:
   m_IgnoreFromBuild: 1
   m_ApplyToChildren: 1
   m_AffectedAgents: ffffffff
+--- !u!54 &5998970709059243137
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251490871448091372}
+  serializedVersion: 4
+  m_Mass: 0.0000001
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &829253269538278461
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,7 +558,7 @@ GameObject:
   - component: {fileID: 2359091449321467648}
   - component: {fileID: 3771288220437539950}
   - component: {fileID: 961216801766726803}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}

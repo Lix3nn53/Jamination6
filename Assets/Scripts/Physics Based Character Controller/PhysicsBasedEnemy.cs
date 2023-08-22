@@ -80,7 +80,7 @@ public class PhysicsBasedEnemy : MonoBehaviour
 
   private void Start()
   {
-    _target = ServiceLocator.Get<Player>().transform;
+    _target = ServiceLocator.Get<Human>().transform;
   }
 
   /// <summary>

@@ -1,29 +1,34 @@
 using UnityEngine;
 
-namespace LlamAcademy.Sensors
+[RequireComponent(typeof(SphereCollider))]
+public class ZombieSensor : MonoBehaviour
 {
-    [RequireComponent(typeof(SphereCollider))]
-    public class ZombieSensor : MonoBehaviour
+    public delegate void ZombieEnterEvent(GameObject zombie);
+    public delegate void ZombieExitEvent(GameObject zombie);
+    public event ZombieEnterEvent OnZombieEnter;
+    public event ZombieExitEvent OnZombieExit;
+
+    private void OnTriggerEnter(Collider other)
     {
-        public delegate void PlayerEnterEvent(Player player);
-        public delegate void PlayerExitEvent(Player player);
-        public event PlayerEnterEvent OnPlayerEnter;
-        public event PlayerExitEvent OnPlayerExit;
-
-        private void OnTriggerEnter(Collider other)
+        if (other.TryGetComponent(out Zombie zombie))
         {
-            if (other.TryGetComponent(out Player player))
-            {
-                OnPlayerEnter?.Invoke(player);
-            }
+            OnZombieEnter?.Invoke(zombie.gameObject);
         }
-
-        private void OnTriggerExit(Collider other)
+        else if (other.TryGetComponent(out Player player))
         {
-            if (other.TryGetComponent(out Player player))
-            {
-                OnPlayerExit?.Invoke(player);
-            }
+            OnZombieEnter?.Invoke(player.gameObject);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.TryGetComponent(out Zombie zombie))
+        {
+            OnZombieExit?.Invoke(zombie.gameObject);
+        }
+        else if (other.TryGetComponent(out Player player))
+        {
+            OnZombieEnter?.Invoke(player.gameObject);
         }
     }
 }

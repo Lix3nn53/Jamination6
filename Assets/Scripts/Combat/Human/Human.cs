@@ -5,118 +5,115 @@ using LlamAcademy.Sensors;
 using UnityEngine.AI;
 using Lix.Core;
 
-namespace LlamAcademy.FSM
+[RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
+public class Human : Enemy
 {
-    [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
-    public class Human : Enemy
+    [Header("Attack Config")]
+    [SerializeField]
+    [Range(0.1f, 5f)]
+    private float _attackCooldown = 2;
+
+    [Header("Sensors")]
+    [SerializeField]
+    private ZombieSensor _followPlayerSensor;
+    [SerializeField]
+    private ZombieSensor _rangeAttackPlayerSensor;
+    [SerializeField]
+    private ZombieSensor _meleePlayerSensor;
+
+    [Space]
+    [Header("Debug Info")]
+    [SerializeField]
+    private bool _isInMeleeRange;
+    [SerializeField]
+    private bool _isInChasingRange;
+    [SerializeField]
+    private float _lastAttackTime;
+
+    private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
+
+    public override void Awake()
     {
-        [Header("Attack Config")]
-        [SerializeField]
-        [Range(0.1f, 5f)]
-        private float _attackCooldown = 2;
+        base.Awake();
 
-        [Header("Sensors")]
-        [SerializeField]
-        private PlayerSensor _followPlayerSensor;
-        [SerializeField]
-        private PlayerSensor _rangeAttackPlayerSensor;
-        [SerializeField]
-        private PlayerSensor _meleePlayerSensor;
+        _enemyFSM = new();
 
-        [Space]
-        [Header("Debug Info")]
-        [SerializeField]
-        private bool _isInMeleeRange;
-        [SerializeField]
-        private bool _isInChasingRange;
-        [SerializeField]
-        private float _lastAttackTime;
+        // Add States
+        _enemyFSM.AddState(EnemyState.Idle, new HumanIdleState(false, this));
+        _enemyFSM.AddState(EnemyState.Chase, new HumanChaseState(true, this));
+        _enemyFSM.AddState(EnemyState.Attack, new HumanAttackState(true, this, OnAttack));
 
-        private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
+        // Add Transitions
+        _enemyFSM.AddTriggerTransition(EnemyStateEvent.DetectTarget, new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase));
+        _enemyFSM.AddTriggerTransition(EnemyStateEvent.LostTarget, new Transition<EnemyState>(EnemyState.Chase, EnemyState.Idle));
 
-        public override void Awake()
-        {
-            base.Awake();
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase,
+            (transition) => _isInChasingRange && TargetsInRange.Count > 0)
+        );
 
-            _enemyFSM = new();
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Idle,
+            (transition) => !_isInChasingRange || TargetsInRange.Count == 0)
+        );
 
-            // Add States
-            _enemyFSM.AddState(EnemyState.Idle, new HumanIdleState(false, this));
-            _enemyFSM.AddState(EnemyState.Chase, new HumanChaseState(true, this));
-            _enemyFSM.AddState(EnemyState.Attack, new HumanAttackState(true, this, OnAttack));
+        // Attack Transitions
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, ShouldMelee, true));
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, ShouldMelee, true));
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, IsNotWithinIdleRange));
+        _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
 
-            // Add Transitions
-            _enemyFSM.AddTriggerTransition(EnemyStateEvent.DetectTarget, new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase));
-            _enemyFSM.AddTriggerTransition(EnemyStateEvent.LostTarget, new Transition<EnemyState>(EnemyState.Chase, EnemyState.Idle));
+        _enemyFSM.Init();
+    }
 
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Chase,
-                (transition) => _isInChasingRange && TargetsInRange.Count > 0)
-            );
+    private void OnEnable()
+    {
+        _followPlayerSensor.OnZombieEnter += FollowPlayerSensor_OnPlayerEnter;
+        _followPlayerSensor.OnZombieExit += FollowPlayerSensor_OnPlayerExit;
+        // _rangeAttackPlayerSensor.OnPlayerEnter += RangeAttackPlayerSensor_OnPlayerEnter;
+        // _rangeAttackPlayerSensor.OnPlayerExit += RangeAttackPlayerSensor_OnPlayerExit;
+        _meleePlayerSensor.OnZombieEnter += MeleePlayerSensor_OnPlayerEnter;
+        _meleePlayerSensor.OnZombieExit += MeleePlayerSensor_OnPlayerExit;
+    }
 
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Idle,
-                (transition) => !_isInChasingRange || TargetsInRange.Count == 0)
-            );
+    private void OnDisable()
+    {
+        _followPlayerSensor.OnZombieEnter -= FollowPlayerSensor_OnPlayerEnter;
+        _followPlayerSensor.OnZombieExit -= FollowPlayerSensor_OnPlayerExit;
+        // _rangeAttackPlayerSensor.OnPlayerEnter -= RangeAttackPlayerSensor_OnPlayerEnter;
+        // _rangeAttackPlayerSensor.OnPlayerExit -= RangeAttackPlayerSensor_OnPlayerExit;
+        _meleePlayerSensor.OnZombieEnter -= MeleePlayerSensor_OnPlayerEnter;
+        _meleePlayerSensor.OnZombieExit -= MeleePlayerSensor_OnPlayerExit;
+    }
 
-            // Attack Transitions
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Chase, EnemyState.Attack, ShouldMelee, true));
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Idle, EnemyState.Attack, ShouldMelee, true));
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Chase, IsNotWithinIdleRange));
-            _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
+    private void FollowPlayerSensor_OnPlayerExit(GameObject player)
+    {
+        TargetsInRange.Remove(player);
+        _enemyFSM.Trigger(EnemyStateEvent.LostTarget);
+        _isInChasingRange = TargetsInRange.Count > 0;
+    }
 
-            _enemyFSM.Init();
-        }
+    private void FollowPlayerSensor_OnPlayerEnter(GameObject player)
+    {
+        TargetsInRange.Add(player);
+        _enemyFSM.Trigger(EnemyStateEvent.DetectTarget);
+        _isInChasingRange = true;
+    }
 
-        private void OnEnable()
-        {
-            _followPlayerSensor.OnPlayerEnter += FollowPlayerSensor_OnPlayerEnter;
-            _followPlayerSensor.OnPlayerExit += FollowPlayerSensor_OnPlayerExit;
-            // _rangeAttackPlayerSensor.OnPlayerEnter += RangeAttackPlayerSensor_OnPlayerEnter;
-            // _rangeAttackPlayerSensor.OnPlayerExit += RangeAttackPlayerSensor_OnPlayerExit;
-            _meleePlayerSensor.OnPlayerEnter += MeleePlayerSensor_OnPlayerEnter;
-            _meleePlayerSensor.OnPlayerExit += MeleePlayerSensor_OnPlayerExit;
-        }
+    private bool ShouldMelee(Transition<EnemyState> Transition) =>
+        _lastAttackTime + _attackCooldown <= Time.time
+               && _isInMeleeRange;
 
-        private void OnDisable()
-        {
-            _followPlayerSensor.OnPlayerEnter -= FollowPlayerSensor_OnPlayerEnter;
-            _followPlayerSensor.OnPlayerExit -= FollowPlayerSensor_OnPlayerExit;
-            // _rangeAttackPlayerSensor.OnPlayerEnter -= RangeAttackPlayerSensor_OnPlayerEnter;
-            // _rangeAttackPlayerSensor.OnPlayerExit -= RangeAttackPlayerSensor_OnPlayerExit;
-            _meleePlayerSensor.OnPlayerEnter -= MeleePlayerSensor_OnPlayerEnter;
-            _meleePlayerSensor.OnPlayerExit -= MeleePlayerSensor_OnPlayerExit;
-        }
+    private void MeleePlayerSensor_OnPlayerExit(GameObject player) => _isInMeleeRange = false;
 
-        private void FollowPlayerSensor_OnPlayerExit(GameObject player)
-        {
-            TargetsInRange.Remove(player);
-            _enemyFSM.Trigger(EnemyStateEvent.LostTarget);
-            _isInChasingRange = TargetsInRange.Count > 0;
-        }
+    private void MeleePlayerSensor_OnPlayerEnter(GameObject player) => _isInMeleeRange = true;
 
-        private void FollowPlayerSensor_OnPlayerEnter(GameObject player)
-        {
-            TargetsInRange.Add(player);
-            _enemyFSM.Trigger(EnemyStateEvent.DetectTarget);
-            _isInChasingRange = true;
-        }
+    private void OnAttack(State<EnemyState, EnemyStateEvent> State)
+    {
+        transform.LookAt(GetClosestTarget().transform.position);
+        _lastAttackTime = Time.time;
+    }
 
-        private bool ShouldMelee(Transition<EnemyState> Transition) =>
-            _lastAttackTime + _attackCooldown <= Time.time
-                   && _isInMeleeRange;
-
-        private void MeleePlayerSensor_OnPlayerExit(GameObject player) => _isInMeleeRange = false;
-
-        private void MeleePlayerSensor_OnPlayerEnter(GameObject player) => _isInMeleeRange = true;
-
-        private void OnAttack(State<EnemyState, EnemyStateEvent> State)
-        {
-            transform.LookAt(GetClosestTarget().transform.position);
-            _lastAttackTime = Time.time;
-        }
-
-        private void Update()
-        {
-            _enemyFSM.OnLogic();
-        }
+    private void Update()
+    {
+        _enemyFSM.OnLogic();
     }
 }

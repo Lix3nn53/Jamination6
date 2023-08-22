@@ -1,8 +1,5 @@
-namespace LlamAcademy.FSM
+public enum EnemyStateEvent
 {
-    public enum EnemyStateEvent
-    {
-        DetectTarget,
-        LostTarget
-    }
+    DetectTarget,
+    LostTarget
 }
