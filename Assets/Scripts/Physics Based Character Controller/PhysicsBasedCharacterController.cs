@@ -193,26 +193,26 @@ public class PhysicsBasedCharacterController : MonoBehaviour
     bool grounded = CheckIfGrounded(rayHitGround, rayHit);
     if (grounded == true)
     {
-      if (_prevGrounded == false)
-      {
-        if (_audioManager.IsPlaying("Land"))
-        {
-          _audioManager.Play("Land");
-        }
+      // if (_prevGrounded == false)
+      // {
+      //   if (_audioManager.IsPlaying("Land"))
+      //   {
+      //     _audioManager.Play("Land");
+      //   }
 
-      }
+      // }
 
-      if (_moveInput.magnitude != 0)
-      {
-        if (_audioManager.IsPlaying("Walking"))
-        {
-          _audioManager.Play("Walking");
-        }
-      }
-      else
-      {
-        _audioManager.Stop("Walking");
-      }
+      // if (_moveInput.magnitude != 0)
+      // {
+      //   if (_audioManager.IsPlaying("Walking"))
+      //   {
+      //     _audioManager.Play("Walking");
+      //   }
+      // }
+      // else
+      // {
+      //   _audioManager.Stop("Walking");
+      // }
 
       if (_dustParticleSystem)
       {
@@ -231,7 +231,7 @@ public class PhysicsBasedCharacterController : MonoBehaviour
     }
     else
     {
-      _audioManager.Stop("Walking");
+      // _audioManager.Stop("Walking");
 
       if (_dustParticleSystem)
       {

@@ -13,7 +13,7 @@ public class HumanIdleState : EnemyStateBase
         Animator.Play("Idle_A");
 
         var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.gray);
+        propertyBlock.SetColor("_Color", Color.blue);
         Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 

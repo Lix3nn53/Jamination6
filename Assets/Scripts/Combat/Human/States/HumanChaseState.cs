@@ -28,7 +28,7 @@ public class HumanChaseState : EnemyStateBase
         Animator.Play("Walk");
 
         var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.magenta);
+        propertyBlock.SetColor("_Color", Color.cyan);
         Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 

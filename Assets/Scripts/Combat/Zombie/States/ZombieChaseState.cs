@@ -28,7 +28,7 @@ public class ZombieChaseState : EnemyStateBase
         Animator.Play("Walk");
 
         var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.magenta);
+        propertyBlock.SetColor("_Color", Color.green);
         Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 
