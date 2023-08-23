@@ -27,9 +27,9 @@ public class HumanChaseState : EnemyStateBase
         Agent.isStopped = false;
         Animator.Play("Walk");
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.cyan);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.cyan);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 
     public override void OnLogic()

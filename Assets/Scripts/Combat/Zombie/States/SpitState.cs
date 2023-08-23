@@ -43,8 +43,8 @@ public class SpitState : EnemyStateBase
         Animator.Play("Attack");
         Pool.Get();
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.yellow);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.yellow);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 }

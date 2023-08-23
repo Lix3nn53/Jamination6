@@ -13265,7 +13265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 12, y: 15, z: 0}
+  m_FollowOffset: {x: 18, y: 22, z: 0}
   m_XDamping: 1
   m_YDamping: 2
   m_ZDamping: 1
@@ -15152,8 +15152,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272708204}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3063107, y: -0.6373176, z: 0.30631062, w: 0.6373177}
-  m_LocalPosition: {x: -14, y: 17, z: 0}
+  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
+  m_LocalPosition: {x: -8, y: 24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -15952,8 +15952,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379248025}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.3063107, y: -0.6373176, z: 0.30631062, w: 0.6373177}
-  m_LocalPosition: {x: -14, y: 17, z: 0}
+  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
+  m_LocalPosition: {x: -8, y: 24, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -21939,27 +21939,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6787957740069546816}
-  - {fileID: 1100314109297355523}
-  - {fileID: 2836448231117046613}
   - {fileID: 2256880951917132731}
   - {fileID: 3050023671332959582}
   - {fileID: 7849513267007421127}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1100314109297355523
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7225321896861445456}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 570375694928157026}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &1428647412447123280
 MeshRenderer:
@@ -23764,39 +23747,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 943161445559897605, guid: 3a803eada46f1014992a8959d9011ee3, type: 3}
   m_PrefabInstance: {fileID: 2256880951917132730}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &2760462132306849298
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2836448231117046613}
-  - component: {fileID: 6956564657354533299}
-  - component: {fileID: 6956564657354533300}
-  m_Layer: 12
-  m_Name: Melee Attack Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2836448231117046613
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2760462132306849298}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 570375694928157026}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!224 &3050023671332959582
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25785,27 +25735,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!135 &4470749122481664940
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7225321896861445456}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4609920673498036817
 GameObject:
   m_ObjectHideFlags: 0
@@ -25970,39 +25899,6 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5174678727064279546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed802ee32be8014d924a2cf22c928ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!135 &6956564657354533299
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2760462132306849298}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Radius: 1.5
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6956564657354533300
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2760462132306849298}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fed802ee32be8014d924a2cf22c928ea, type: 3}
@@ -48443,36 +48339,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &7225321896861445456
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1100314109297355523}
-  - component: {fileID: 4470749122481664940}
-  - component: {fileID: 7225321896861445457}
-  m_Layer: 12
-  m_Name: Range Attack Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &7225321896861445457
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7225321896861445456}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed802ee32be8014d924a2cf22c928ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &7274988797323412424
 GameObject:
   m_ObjectHideFlags: 0
@@ -48581,16 +48447,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TargetsInRange: []
+  ClosestDistance: Infinity
   MeshRenderer: {fileID: 4685100411486964052}
   Animator: {fileID: 0}
   Agent: {fileID: 0}
-  _attackCooldown: 1
+  MeleeAttackCooldown: 2
+  MeleeRange: 4
+  MaxHealth: 100
+  Health: 100
+  LastAttackTime: 0
   _followPlayerSensor: {fileID: 6787957740069546817}
-  _rangeAttackPlayerSensor: {fileID: 7225321896861445457}
-  _meleePlayerSensor: {fileID: 6956564657354533300}
-  _isInMeleeRange: 0
-  _isInChasingRange: 0
-  _lastAttackTime: 0
 --- !u!54 &8567470654964823511
 Rigidbody:
   m_ObjectHideFlags: 0

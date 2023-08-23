@@ -12,11 +12,9 @@ namespace LlamAcademy.Sensors
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("HumanSensor Trigger enter: " + other.name);
             if (other.TryGetComponent(out Human human))
             {
                 OnHumanEnter?.Invoke(human.gameObject);
-                Debug.Log("Human entered");
             }
         }
 

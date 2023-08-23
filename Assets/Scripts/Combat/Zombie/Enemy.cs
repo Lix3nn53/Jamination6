@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FSM;
@@ -10,15 +11,31 @@ public abstract class Enemy : MonoBehaviour
 {
     [Header("References")]
     public List<GameObject> TargetsInRange = new List<GameObject>(); // Collection of players in range
+    public float ClosestDistance = Mathf.Infinity;
     public MeshRenderer MeshRenderer;
 
     public Animator Animator;
     public NavMeshAgent Agent;
 
+    [Header("Config")]
+    public float MeleeAttackCooldown = 2f;
+    public float MeleeRange = 4f;
+    public int MaxHealth = 100;
+    public int Health = 100;
+
+    [Space]
+    [Header("Debug Info")]
+    [SerializeField]
+    public float LastAttackTime;
+    private bool _isTakingDamage = false;
+    private float _damageTakeInterval = 0.2f;
+
     public virtual void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
         Animator = GetComponent<Animator>();
+
+        Health = MaxHealth;
     }
 
     public bool IsWithinIdleRange(Transition<EnemyState> Transition) =>
@@ -27,21 +44,80 @@ public abstract class Enemy : MonoBehaviour
     public bool IsNotWithinIdleRange(Transition<EnemyState> Transition) =>
         !IsWithinIdleRange(Transition);
 
+    public bool ShouldMelee(Transition<EnemyState> Transition)
+    {
+        GetClosestTarget();
+
+        return LastAttackTime + MeleeAttackCooldown <= Time.time && ClosestDistance <= MeleeRange;
+    }
+
     public GameObject GetClosestTarget()
     {
         GameObject closestTarget = null;
-        float closestDistance = Mathf.Infinity;
+        ClosestDistance = Mathf.Infinity;
 
         foreach (var target in TargetsInRange)
         {
+            if (target == null) continue;
+
             var distance = Vector3.Distance(transform.position, target.transform.position);
-            if (distance < closestDistance)
+            if (distance < ClosestDistance)
             {
-                closestDistance = distance;
+                ClosestDistance = distance;
                 closestTarget = target;
             }
         }
 
         return closestTarget;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (_isTakingDamage) return;
+
+        Health -= damage;
+        if (Health <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            DamageTintColor();
+            StartCoroutine(DamageTakeCooldown());
+        }
+    }
+
+    private void DamageTintColor()
+    {
+        foreach (Material material in MeshRenderer.materials)
+        {
+            StartCoroutine(DamageTintColorForOne(material));
+        }
+    }
+
+    private IEnumerator DamageTintColorForOne(Material material)
+    {
+        Color originalColor = material.color;
+        material.color = Color.red;
+        yield return new WaitForSeconds(_damageTakeInterval);
+        material.color = originalColor;
+    }
+
+    private IEnumerator DamageTakeCooldown()
+    {
+        _isTakingDamage = true;
+        yield return new WaitForSeconds(_damageTakeInterval);
+        _isTakingDamage = false;
+    }
+
+    public virtual void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, MeleeRange);
     }
 }

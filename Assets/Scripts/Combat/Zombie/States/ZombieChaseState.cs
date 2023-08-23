@@ -27,9 +27,9 @@ public class ZombieChaseState : EnemyStateBase
         Agent.isStopped = false;
         Animator.Play("Walk");
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.green);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.green);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 
     public override void OnLogic()

@@ -12,9 +12,9 @@ public class ZombieIdleState : EnemyStateBase
         Agent.isStopped = true;
         Animator.Play("Idle_A");
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.gray);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.gray);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 
     public override void OnLogic()

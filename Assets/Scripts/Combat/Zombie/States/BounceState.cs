@@ -23,9 +23,9 @@ public class BounceState : EnemyStateBase
         Animator.Play("Bounce");
         BounceParticleSystem.Play();
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.blue);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.blue);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 }
 

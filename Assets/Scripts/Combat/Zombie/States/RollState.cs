@@ -16,9 +16,9 @@ public class RollState : EnemyStateBase
         base.OnEnter();
         Animator.Play("Roll");
 
-        var propertyBlock = new MaterialPropertyBlock();
-        propertyBlock.SetColor("_Color", Color.green);
-        Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
+        // var propertyBlock = new MaterialPropertyBlock();
+        // propertyBlock.SetColor("_Color", Color.green);
+        // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 
     public override void OnLogic()
