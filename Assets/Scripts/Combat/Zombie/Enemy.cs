@@ -21,7 +21,8 @@ public abstract class Enemy : MonoBehaviour
     public float MeleeAttackCooldown = 2f;
     public float MeleeRange = 4f;
     public int MaxHealth = 100;
-    public int Health = 100;
+    private int Health = 100;
+    public int Damage = 10;
 
     [Space]
     [Header("Debug Info")]

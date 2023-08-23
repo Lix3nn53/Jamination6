@@ -78,7 +78,7 @@ public class Player : CombatUnit
     Human human = closest.GetComponent<Human>();
     if (human != null)
     {
-      human.TakeDamage(20);
+      human.TakeDamage(MeleeDamage);
     }
   }
 

@@ -1,12 +1,12 @@
 using UnityEngine;
+using Lix.Core;
 
 public class ZombieIdleState : EnemyStateBase
 {
-    private float _lastRandomAngleTime = Time.time;
-    private float _randomAngleCooldown = 4f;
-    private float _travelDistance = 8f;
+    private Player _player;
     public ZombieIdleState(bool needsExitTime, Zombie Zombie) : base(needsExitTime, Zombie)
     {
+        _player = ServiceLocator.Get<Player>();
     }
 
     public override void OnEnter()
@@ -27,16 +27,7 @@ public class ZombieIdleState : EnemyStateBase
         // you can add a more complex movement prediction algorithm like what 
         // we did in AI Series 44: https://youtu.be/1Jkg8cKLsC0
 
-        if (_lastRandomAngleTime + _randomAngleCooldown <= Time.time)
-        {
-            _lastRandomAngleTime = Time.time;
-            // turn Enemy.transform to a random angle
-            float angle = Random.Range(90f, 180f);
-
-            Vector3 normDir = (Enemy.transform.forward + (Quaternion.Euler(0f, angle, 0f) * Vector3.forward)).normalized;
-
-            Agent.SetDestination(Enemy.transform.position + (normDir * _travelDistance));
-        }
+        Agent.SetDestination(_player.transform.position);
 
         base.OnLogic();
     }

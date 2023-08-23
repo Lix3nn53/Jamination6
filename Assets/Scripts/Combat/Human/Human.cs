@@ -96,12 +96,12 @@ public class Human : Enemy
         Zombie zombie = closest.GetComponent<Zombie>();
         if (zombie != null)
         {
-            zombie.TakeDamage(20);
+            zombie.TakeDamage(Damage);
         }
         else
         {
             Player player = closest.GetComponent<Player>();
-            player.TakeDamage(20);
+            player.TakeDamage(Damage);
         }
     }
 

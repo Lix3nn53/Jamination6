@@ -91,6 +91,6 @@ public class Zombie : Enemy
         LastAttackTime = Time.time;
 
         Human human = closest.GetComponent<Human>();
-        human.TakeDamage(20);
+        human.TakeDamage(Damage);
     }
 }

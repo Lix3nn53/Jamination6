@@ -225,7 +225,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4341197341675318402}
-  - {fileID: 2491146723310689427}
+  - {fileID: 8566912779089467965}
   - {fileID: 4748839757295647113}
   - {fileID: 6814462123014956214}
   m_Father: {fileID: 0}
@@ -334,8 +334,9 @@ MonoBehaviour:
   Agent: {fileID: 0}
   MeleeAttackCooldown: 2
   MeleeRange: 4
-  MaxHealth: 100
-  Health: 100
+  MaxHealth: 40
+  Health: 40
+  Damage: 10
   LastAttackTime: 0
   _followPlayerSensor: {fileID: 577584666624165253}
   _zombiePrefab: {fileID: 5219476069984165251, guid: 3057406381602704f835678364c28f14, type: 3}
@@ -676,7 +677,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3a803eada46f1014992a8959d9011ee3, type: 3}
---- !u!4 &2491146723310689427 stripped
+--- !u!4 &8566912779089467965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 943161445559897605, guid: 3a803eada46f1014992a8959d9011ee3, type: 3}
   m_PrefabInstance: {fileID: 8932047214261359672}

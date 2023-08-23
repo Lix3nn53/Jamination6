@@ -126,8 +126,8 @@ MonoBehaviour:
   Agent: {fileID: 0}
   MeleeAttackCooldown: 2
   MeleeRange: 3.5
-  MaxHealth: 100
-  Health: 100
+  MaxHealth: 30
+  Damage: 10
   LastAttackTime: 0
   _followPlayerSensor: {fileID: 1854948600249215816}
 --- !u!114 &7465446248787968161
