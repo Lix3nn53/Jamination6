@@ -14,6 +14,9 @@ public class Human : Enemy
 
     private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
 
+    [SerializeField]
+    private Zombie _zombiePrefab;
+
     public override void Awake()
     {
         base.Awake();
@@ -100,5 +103,12 @@ public class Human : Enemy
             Player player = closest.GetComponent<Player>();
             player.TakeDamage(20);
         }
+    }
+
+    public override void Die()
+    {
+        base.Die();
+        // instantiate zombie
+        Zombie zombie = Instantiate(_zombiePrefab, transform.position, transform.rotation);
     }
 }
