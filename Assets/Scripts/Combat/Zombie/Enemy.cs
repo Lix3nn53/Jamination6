@@ -33,6 +33,9 @@ public abstract class Enemy : MonoBehaviour
     public virtual void Awake()
     {
         Agent = GetComponent<NavMeshAgent>();
+        bool a = Agent.Warp(transform.position);
+        Debug.Log("Warp: " + a);
+
         Animator = GetComponent<Animator>();
 
         Health = MaxHealth;
@@ -56,6 +59,8 @@ public abstract class Enemy : MonoBehaviour
         GameObject closestTarget = null;
         ClosestDistance = Mathf.Infinity;
 
+        List<GameObject> validTargets = new List<GameObject>();
+
         foreach (var target in TargetsInRange)
         {
             if (target == null) continue;
@@ -66,7 +71,11 @@ public abstract class Enemy : MonoBehaviour
                 ClosestDistance = distance;
                 closestTarget = target;
             }
+
+            validTargets.Add(target);
         }
+
+        TargetsInRange = validTargets;
 
         return closestTarget;
     }

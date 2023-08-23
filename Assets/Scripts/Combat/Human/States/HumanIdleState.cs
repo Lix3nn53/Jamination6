@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HumanIdleState : EnemyStateBase
 {
-    private float _lastRandomAngleTime = 0f;
+    private float _lastRandomAngleTime = Time.time;
     private float _randomAngleCooldown = 4f;
     private float _travelDistance = 8f;
     public HumanIdleState(bool needsExitTime, Human Human) : base(needsExitTime, Human)

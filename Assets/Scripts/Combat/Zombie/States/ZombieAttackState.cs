@@ -17,7 +17,7 @@ public class ZombieAttackState : EnemyStateBase
         Animator.Play("Attack");
 
         // var propertyBlock = new MaterialPropertyBlock();
-        // propertyBlock.SetColor("_Color", Color.green);
+        // propertyBlock.SetColor("_Color", Color.red);
         // Enemy.MeshRenderer.SetPropertyBlock(propertyBlock);
     }
 }

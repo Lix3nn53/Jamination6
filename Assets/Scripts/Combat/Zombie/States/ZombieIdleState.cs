@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ZombieIdleState : EnemyStateBase
 {
-    private float _lastRandomAngleTime = 0f;
+    private float _lastRandomAngleTime = Time.time;
     private float _randomAngleCooldown = 4f;
     private float _travelDistance = 8f;
     public ZombieIdleState(bool needsExitTime, Zombie Zombie) : base(needsExitTime, Zombie)
@@ -31,7 +31,7 @@ public class ZombieIdleState : EnemyStateBase
         {
             _lastRandomAngleTime = Time.time;
             // turn Enemy.transform to a random angle
-            float angle = Random.Range(0f, 360f);
+            float angle = Random.Range(90f, 180f);
 
             Vector3 normDir = (Enemy.transform.forward + (Quaternion.Euler(0f, angle, 0f) * Vector3.forward)).normalized;
 
