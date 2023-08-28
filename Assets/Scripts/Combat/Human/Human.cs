@@ -14,8 +14,7 @@ public class Human : Enemy
 
     private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
 
-    [SerializeField]
-    private Zombie _zombiePrefab;
+    private ZombiePool _zombiePool;
 
     public override void Awake()
     {
@@ -47,6 +46,11 @@ public class Human : Enemy
         _enemyFSM.AddTransition(new Transition<EnemyState>(EnemyState.Attack, EnemyState.Idle, IsWithinIdleRange));
 
         _enemyFSM.Init();
+    }
+
+    private void Start()
+    {
+        _zombiePool = ServiceLocator.Get<ZombiePool>();
     }
 
     private void OnEnable()
@@ -108,7 +112,11 @@ public class Human : Enemy
     public override void Die()
     {
         base.Die();
+
+        // Random enum ZombieType
+        ZombieType zombieType = (ZombieType)Random.Range(0, System.Enum.GetValues(typeof(ZombieType)).Length);
+
         // instantiate zombie
-        Zombie zombie = Instantiate(_zombiePrefab, transform.position, transform.rotation);
+        Zombie zombie = _zombiePool.Get(zombieType, transform.position, transform.rotation);
     }
 }

@@ -92,5 +92,11 @@ public class Zombie : Enemy
 
         Human human = closest.GetComponent<Human>();
         human.TakeDamage(Damage);
+
+        OnAttackPerformed();
+    }
+
+    public virtual void OnAttackPerformed()
+    {
     }
 }

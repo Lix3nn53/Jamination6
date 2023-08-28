@@ -6839,6 +6839,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1466109794}
+  _zombiePool: {fileID: 477360132}
 --- !u!4 &250400992
 Transform:
   m_ObjectHideFlags: 0
@@ -6851,7 +6852,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 477360131}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &250849055
@@ -8061,6 +8063,52 @@ MonoBehaviour:
   _groundMask:
     serializedVersion: 2
     m_Bits: 1089
+--- !u!1 &477360130
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 477360131}
+  - component: {fileID: 477360132}
+  m_Layer: 0
+  m_Name: ZombiePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &477360131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477360130}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 250400992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &477360132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477360130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98e38ce6b1dec74e94525f33c2695f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _zombiePrefab: {fileID: 5219476069984165251, guid: 3057406381602704f835678364c28f14, type: 3}
+  _zombieHealerPrefab: {fileID: 6487219337266137889, guid: ab617d9510925eb4db787cd61260fd1d, type: 3}
 --- !u!1 &482624039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9904,7 +9952,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 251490871448091372, guid: 3057406381602704f835678364c28f14, type: 3}
       propertyPath: m_Name
-      value: Zombie
+      value: ZombieAttacker
       objectReference: {fileID: 0}
     - target: {fileID: 251490871448091372, guid: 3057406381602704f835678364c28f14, type: 3}
       propertyPath: m_IsActive
@@ -14004,7 +14052,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1071919699
 Transform:
   m_ObjectHideFlags: 0
@@ -15626,7 +15674,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272708204}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30280447, y: -0.638991, z: 0.3028045, w: 0.63899094}
+  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
   m_LocalPosition: {x: -5, y: 24, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16426,7 +16474,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379248025}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30280447, y: -0.638991, z: 0.3028045, w: 0.63899094}
+  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
   m_LocalPosition: {x: -5, y: 24, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -21796,7 +21844,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1946953608
 Transform:
   m_ObjectHideFlags: 0

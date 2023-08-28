@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Zombie
+  m_Name: ZombieHealer
   m_Shader: {fileID: -6465566751694194690, guid: 145cd9897f5ca10408f35a6ffcb5ccc6, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
