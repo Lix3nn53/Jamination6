@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Lix.Core;
-using TMPro;
 using System;
 
 public class ZombieTypeSelector : MonoBehaviour
@@ -13,6 +12,7 @@ public class ZombieTypeSelector : MonoBehaviour
   [SerializeField] private ZombieType activeType;
 
   private GameManager gameManager;
+  private ZombieTypeToggleSprites zombieTypeToggleSprite;
 
   private void Start()
   {
@@ -26,7 +26,7 @@ public class ZombieTypeSelector : MonoBehaviour
     foreach (Toggle toggle in _zombieTypes.GetComponentsInChildren<Toggle>())
     {
       Debug.Log(toggle);
-      toggle.onValueChanged.AddListener((bool value) => ChangeActiveType(toggle));
+      toggle.onValueChanged.AddListener((bool value) => onToggleValueChanged(toggle));
     }
     
   }
@@ -35,7 +35,7 @@ public class ZombieTypeSelector : MonoBehaviour
   {
     foreach (Toggle toggle in _zombieTypes.GetComponentsInChildren<Toggle>())
     {
-      toggle.onValueChanged.RemoveListener((bool value) => ChangeActiveType(toggle));
+      toggle.onValueChanged.RemoveListener((bool value) => onToggleValueChanged(toggle));
     }
   }
 
@@ -49,12 +49,15 @@ public class ZombieTypeSelector : MonoBehaviour
   {
     this.gameManager.OnZombieTypeChangeEvent -= OnZombieTypeChange;
   }
-  public void ChangeActiveType(Toggle toggle)
+  public void onToggleValueChanged(Toggle toggle)
   {
+    zombieTypeToggleSprite = toggle.GetComponent<ZombieTypeToggleSprites>();
+    zombieTypeToggleSprite.ChangeSprite(toggle);
+    
     if(toggle.isOn){
       Enum.TryParse(toggle.name, true, out ZombieType type);
       activeType = type;
-      Debug.Log("ChangeActiveType = " + activeType);
+      Debug.Log(toggle.name +"ChangeActiveType = " + activeType);
     }
   }
 
