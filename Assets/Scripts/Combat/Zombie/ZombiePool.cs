@@ -6,7 +6,6 @@ public class ZombiePool : MonoBehaviour
 {
     [SerializeField] Zombie _zombiePrefab;
     [SerializeField] ZombieHealer _zombieHealerPrefab;
-
     [SerializeField] ZombieTank _zombieTankPrefab;
     [SerializeField] ZombieCollector _zombieCollectorPrefab;
 

@@ -9,9 +9,12 @@ public class ZombieTypeSelector : MonoBehaviour
 {
   [SerializeField] private ToggleGroup _zombieTypes;
 
-  [SerializeField] private ZombieType activeType;
+  [SerializeField] private Toggle defaultActiveToggle;
+
+  private ZombieType activeType;
 
   private GameManager gameManager;
+  
   private ZombieTypeToggleSprites zombieTypeToggleSprite;
 
   private void Start()
@@ -19,6 +22,7 @@ public class ZombieTypeSelector : MonoBehaviour
     this.gameManager = ServiceLocator.Get<GameManager>();
     this.gameManager.OnZombieTypeChangeEvent += OnZombieTypeChange;
     _zombieTypes = GetComponentInChildren<ToggleGroup>();
+    defaultActiveToggle.isOn = true;
   }
 
   private void OnEnable()
@@ -28,7 +32,6 @@ public class ZombieTypeSelector : MonoBehaviour
       Debug.Log(toggle);
       toggle.onValueChanged.AddListener((bool value) => onToggleValueChanged(toggle));
     }
-    
   }
 
   private void OnDisable()
@@ -57,7 +60,7 @@ public class ZombieTypeSelector : MonoBehaviour
     if(toggle.isOn){
       Enum.TryParse(toggle.name, true, out ZombieType type);
       activeType = type;
-      Debug.Log(toggle.name +"ChangeActiveType = " + activeType);
+      Debug.Log("ChangeActiveType = " + activeType);
     }
   }
 
