@@ -14,7 +14,7 @@ public class ZombieTypeSelector : MonoBehaviour
   private ZombieType activeType;
 
   private GameManager gameManager;
-  
+
   private ZombieTypeToggleSprites zombieTypeToggleSprite;
 
   private void Start()

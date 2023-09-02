@@ -13,7 +13,7 @@ public class ZombieTypeToggleSprites : MonoBehaviour
 
   private Image background;
 
-  private void Start()
+  private void Awake()
   {
     background = this.gameObject.transform.Find("Background").GetComponent<Image>();
   }
