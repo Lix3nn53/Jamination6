@@ -4,24 +4,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using Lix.Core;
 using System;
+using Unity.VisualScripting;
 
 public class ZombieTypeSelector : MonoBehaviour
 {
   [SerializeField] private ToggleGroup _zombieTypes;
-
   [SerializeField] private Toggle defaultActiveToggle;
 
-  private ZombieType activeType;
-
   private GameManager gameManager;
-
   private ZombieTypeToggleSprites zombieTypeToggleSprite;
+  private Slider virusProgressBar;
+  private Player _player;
+  public ZombieType activeType;
 
   private void Start()
   {
     this.gameManager = ServiceLocator.Get<GameManager>();
+    _player = ServiceLocator.Get<Player>();
     this.gameManager.OnZombieTypeChangeEvent += OnZombieTypeChange;
     _zombieTypes = GetComponentInChildren<ToggleGroup>();
+    virusProgressBar = GetComponentInChildren<Slider>();
+
     defaultActiveToggle.isOn = true;
   }
 
@@ -57,16 +60,29 @@ public class ZombieTypeSelector : MonoBehaviour
     zombieTypeToggleSprite = toggle.GetComponent<ZombieTypeToggleSprites>();
     zombieTypeToggleSprite.ChangeSprite(toggle);
     
-    if(toggle.isOn){
+    if(toggle.isOn)
+    {
       Enum.TryParse(toggle.name, true, out ZombieType type);
       activeType = type;
       Debug.Log("ChangeActiveType = " + activeType);
+
+      switch (activeType)
+        {
+          case ZombieType.Damager:
+              virusProgressBar.value = _player.damagerVirus;
+              break;
+          case ZombieType.Healer:
+              virusProgressBar.value = _player.healerVirus;
+              break;
+          case ZombieType.Tank:
+              virusProgressBar.value = _player.tankVirus;
+              break;
+          case ZombieType.Collector:
+              virusProgressBar.value = _player.collectorVirus;
+              break;
+              default:
+              break;
+        }
     }
   }
-
-  public ZombieType GetActiveType()
-  {
-    return activeType;
-  }
-
 }

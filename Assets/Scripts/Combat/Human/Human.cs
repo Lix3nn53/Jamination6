@@ -119,7 +119,7 @@ public class Human : Enemy
         base.Die();
 
         // Random enum ZombieType
-        ZombieType zombieType = _zombieTypeSelector.GetActiveType();
+        ZombieType zombieType = _zombieTypeSelector.activeType;
 
         // instantiate zombie
         Zombie zombie = _zombiePool.Get(zombieType, transform.position, transform.rotation);

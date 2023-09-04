@@ -10,6 +10,15 @@ public class Player : CombatUnit
   private GameManager _gameManager;
   private Player _player;
 
+  public int damagerVirus;
+  public int healerVirus;
+  public int tankVirus;
+  public int collectorVirus;
+  public int scoreCollectable;
+  public int damageBuff;
+  public int defenseBuff;
+  public int movementBuff;
+
   public float MeleeRange = 4f;
   public float MeleeAttackCooldown = 2f;
 
