@@ -11,23 +11,25 @@ public class ZombieCollector : Zombie
     private LootSensor _lootSensor;
     public override void OnEnable()
     {
-        _lootSensor.OnEnter += HumanWallSensor_OnHumanEnter;
-        _lootSensor.OnExit += HumanWallSensor_OnHumanExit;
+        base.OnEnable();
+
+        _lootSensor.OnEnter += OnLootEnter;
+        _lootSensor.OnExit += OnLootExit;
     }
 
     public override void OnDisable()
     {
-        _lootSensor.OnEnter -= HumanWallSensor_OnHumanEnter;
-        _lootSensor.OnExit -= HumanWallSensor_OnHumanExit;
+        _lootSensor.OnEnter -= OnLootEnter;
+        _lootSensor.OnExit -= OnLootExit;
     }
 
-    private void HumanWallSensor_OnHumanEnter(GameObject human)
+    private void OnLootEnter(GameObject human)
     {
         TargetsInRange.Add(human);
         EnemyFSM.Trigger(EnemyStateEvent.DetectTarget);
     }
 
-    private void HumanWallSensor_OnHumanExit(GameObject human)
+    private void OnLootExit(GameObject human)
     {
         TargetsInRange.Remove(human);
         EnemyFSM.Trigger(EnemyStateEvent.LostTarget);

@@ -15,7 +15,7 @@ public class Human : EnemyWithAI
 
     private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
 
-    private ZombiePool _zombiePool;
+    private ZombiePoolManager _zombiePool;
 
     private ZombieTypeSelector _zombieTypeSelector;
 
@@ -53,12 +53,13 @@ public class Human : EnemyWithAI
 
     private void Start()
     {
-        _zombiePool = ServiceLocator.Get<ZombiePool>();
+        _zombiePool = ServiceLocator.Get<ZombiePoolManager>();
         _zombieTypeSelector = ServiceLocator.Get<ZombieTypeSelector>();
     }
 
-    private void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
 
         _zombieSensor.OnZombieEnter += FollowPlayerSensor_OnZombieEnter;
         _zombieSensor.OnZombieExit += FollowPlayerSensor_OnZombieExit;
@@ -122,6 +123,9 @@ public class Human : EnemyWithAI
         ZombieType zombieType = _zombieTypeSelector.activeType;
 
         // instantiate zombie
-        Zombie zombie = _zombiePool.Get(zombieType, transform.position, transform.rotation);
+        Zombie zombie = _zombiePool.GetZombie(zombieType);
+        zombie.transform.position = transform.position;
+        zombie.transform.rotation = transform.rotation;
+        zombie.gameObject.SetActive(true);
     }
 }

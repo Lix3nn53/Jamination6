@@ -16,7 +16,7 @@ public abstract class Enemy : MonoBehaviour
     private bool _isTakingDamage = false;
     private float _damageTakeInterval = 0.2f;
 
-    public virtual void Awake()
+    public virtual void OnEnable()
     {
         Health = MaxHealth;
     }

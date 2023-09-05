@@ -8,6 +8,8 @@ using Lix.Core;
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
 public class Zombie : EnemyWithAI
 {
+    [HideInInspector] public ZombiePool ZombiePool; // WindPool is set in WindPool.OnTakeFromPool
+
     [Header("Sensors")]
     [SerializeField]
     private HumanSensor _humanSensor;
@@ -46,8 +48,10 @@ public class Zombie : EnemyWithAI
         EnemyFSM.Init();
     }
 
-    public virtual void OnEnable()
+    public override void OnEnable()
     {
+        base.OnEnable();
+
         _humanSensor.OnEnter += HumanSensor_OnHumanEnter;
         _humanSensor.OnExit += HumanSensor_OnHumanExit;
         // _rangeAttackPlayerSensor.OnPlayerEnter += RangeAttackPlayerSensor_OnPlayerEnter;
@@ -98,5 +102,17 @@ public class Zombie : EnemyWithAI
 
     public virtual void OnAttackPerformed()
     {
+    }
+
+    public override void Die()
+    {
+        if (ZombiePool != null)
+        {
+            ZombiePool.Pool.Release(this);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

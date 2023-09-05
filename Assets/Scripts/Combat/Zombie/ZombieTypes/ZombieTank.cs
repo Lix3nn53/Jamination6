@@ -11,23 +11,25 @@ public class ZombieTank : Zombie
     private HumanWallSensor _humanWallSensor;
     public override void OnEnable()
     {
-        _humanWallSensor.OnEnter += HumanWallSensor_OnHumanEnter;
-        _humanWallSensor.OnExit += HumanWallSensor_OnHumanExit;
+        base.OnEnable();
+
+        _humanWallSensor.OnEnter += OnWallEnter;
+        _humanWallSensor.OnExit += OnWallExit;
     }
 
     public override void OnDisable()
     {
-        _humanWallSensor.OnEnter -= HumanWallSensor_OnHumanEnter;
-        _humanWallSensor.OnExit -= HumanWallSensor_OnHumanExit;
+        _humanWallSensor.OnEnter -= OnWallEnter;
+        _humanWallSensor.OnExit -= OnWallExit;
     }
 
-    private void HumanWallSensor_OnHumanEnter(GameObject human)
+    private void OnWallEnter(GameObject human)
     {
         TargetsInRange.Add(human);
         EnemyFSM.Trigger(EnemyStateEvent.DetectTarget);
     }
 
-    private void HumanWallSensor_OnHumanExit(GameObject human)
+    private void OnWallExit(GameObject human)
     {
         TargetsInRange.Remove(human);
         EnemyFSM.Trigger(EnemyStateEvent.LostTarget);

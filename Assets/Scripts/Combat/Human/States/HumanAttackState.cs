@@ -14,7 +14,7 @@ public class HumanAttackState : EnemyStateBase
     {
         Agent.isStopped = true;
         base.OnEnter();
-        Animator.Play("Attack");
+        // Animator.Play("Attack");
 
         // var propertyBlock = new MaterialPropertyBlock();
         // propertyBlock.SetColor("_Color", Color.cyan);

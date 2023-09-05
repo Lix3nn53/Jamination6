@@ -1,6 +1,6 @@
 public enum ZombieType
 {
-    Damager,
+    Attacker,
     Healer,
     Tank,
     Collector

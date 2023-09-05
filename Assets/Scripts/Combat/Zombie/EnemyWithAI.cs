@@ -23,10 +23,8 @@ public abstract class EnemyWithAI : Enemy
 
     public float LastAttackTime;
 
-    public override void Awake()
+    public virtual void Awake()
     {
-        base.Awake();
-
         Agent = GetComponent<NavMeshAgent>();
 
         _animator = GetComponent<Animator>();

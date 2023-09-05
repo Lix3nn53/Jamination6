@@ -40,7 +40,7 @@ public class SpitState : EnemyStateBase
     {
         Agent.isStopped = true;
         base.OnEnter();
-        Animator.Play("Attack");
+        // Animator.Play("Attack");
         Pool.Get();
 
         // var propertyBlock = new MaterialPropertyBlock();
