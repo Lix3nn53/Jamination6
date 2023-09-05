@@ -10,7 +10,7 @@ public class Player : CombatUnit
   private GameManager _gameManager;
   private Player _player;
 
-  public int damagerVirus;
+  public int attackerVirus;
   public int healerVirus;
   public int tankVirus;
   public int collectorVirus;

@@ -69,7 +69,7 @@ public class ZombieTypeSelector : MonoBehaviour
       switch (activeType)
       {
         case ZombieType.Attacker:
-          virusProgressBar.value = _player.damagerVirus;
+          virusProgressBar.value = _player.attackerVirus;
           break;
         case ZombieType.Healer:
           virusProgressBar.value = _player.healerVirus;

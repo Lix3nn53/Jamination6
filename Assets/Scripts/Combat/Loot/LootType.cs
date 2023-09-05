@@ -1,6 +1,6 @@
 public enum LootType 
 {
-    DamagerVirus,
+    AttackerVirus,
     HealerVirus,
     TankVirus,
     CollectorVirus,
