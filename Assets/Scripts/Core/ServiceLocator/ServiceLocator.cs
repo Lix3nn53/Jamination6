@@ -18,28 +18,22 @@ namespace Lix.Core
     {
       IDictionary<Type, ServiceDescriptor> serviceDescriptors = GetServiceDescriptors();
 
-      // Return if service is already registered
-      if (serviceDescriptors.ContainsKey(serviceDescriptor.ServiceType))
-      {
-        return;
-      }
-
-      if (serviceDescriptor.Implementation is MonoBehaviour)
-      {
-        Debug.Log(string.Format("New service {0} is registered!", serviceDescriptor.ServiceType), (MonoBehaviour)serviceDescriptor.Implementation);
-
-        if (dontDestroyOnLoad)
-        {
-          DontDestroyOnLoad((MonoBehaviour)serviceDescriptor.Implementation);
-        }
-      }
-      else
-      {
-        Debug.Log(string.Format("New service {0} is registered!", serviceDescriptor.ServiceType));
-      }
+      // if (serviceDescriptor.Implementation is MonoBehaviour)
+      // {
+      //   Debug.Log(string.Format("New service {0} is registered!", serviceDescriptor.ServiceType), (MonoBehaviour)serviceDescriptor.Implementation);
+      // }
+      // else
+      // {
+      //   Debug.Log(string.Format("New service {0} is registered!", serviceDescriptor.ServiceType));
+      // }
 
       serviceDescriptors.Remove(serviceDescriptor.ServiceType);
       serviceDescriptors.Add(serviceDescriptor.ServiceType, serviceDescriptor);
+
+      if (dontDestroyOnLoad)
+      {
+        DontDestroyOnLoad((MonoBehaviour)serviceDescriptor.Implementation);
+      }
     }
 
     public static void Remove(object implementation)
@@ -52,15 +46,20 @@ namespace Lix.Core
       }
     }
 
-    private static object Get(Type serviceType)
+    private static object Get(Type serviceType, bool silent)
     {
       IDictionary<Type, ServiceDescriptor> serviceDescriptors = GetServiceDescriptors();
-      var serviceDescriptor = serviceDescriptors[serviceType];
 
-      if (serviceDescriptor == null)
+      if (!serviceDescriptors.ContainsKey(serviceType))
       {
-        throw new Exception($"Service of type {serviceType.Name} is not registered");
+        if (!silent)
+        {
+          throw new Exception($"Service of type {serviceType.Name} is not registered");
+        }
+        return null;
       }
+
+      var serviceDescriptor = serviceDescriptors[serviceType];
 
       // Return implementation if it is already created
       if (serviceDescriptor.Implementation != null)
@@ -77,7 +76,7 @@ namespace Lix.Core
 
       System.Reflection.ConstructorInfo constructorInfo = actualType.GetConstructors()[0];
 
-      object[] parameters = constructorInfo.GetParameters().Select(parameter => Get(parameter.ParameterType)).ToArray();
+      object[] parameters = constructorInfo.GetParameters().Select(parameter => Get(parameter.ParameterType, silent)).ToArray();
 
       var implementation = Activator.CreateInstance(actualType, parameters);
 
@@ -86,9 +85,9 @@ namespace Lix.Core
       return implementation;
     }
 
-    public static T Get<T>()
+    public static T Get<T>(bool silent = false)
     {
-      return (T)Get(typeof(T));
+      return (T)Get(typeof(T), silent);
     }
   }
 }

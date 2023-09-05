@@ -119,17 +119,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ee231717d4f12546bda6f295f2905e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeshRenderer: {fileID: 961216801766726803}
+  MaxHealth: 30
+  Health: 100
   TargetsInRange: []
   ClosestDistance: Infinity
-  MeshRenderer: {fileID: 961216801766726803}
-  Animator: {fileID: 0}
   Agent: {fileID: 0}
   MeleeAttackCooldown: 2
   MeleeRange: 3.5
-  MaxHealth: 30
   Damage: 10
   LastAttackTime: 0
-  _followPlayerSensor: {fileID: 1854948600249215816}
+  _humanSensor: {fileID: 1854948600249215816}
 --- !u!114 &7465446248787968161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 7462023365425920839}
   - component: {fileID: 1854948600249215816}
   m_Layer: 12
-  m_Name: Follow Sensor
+  m_Name: Human Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

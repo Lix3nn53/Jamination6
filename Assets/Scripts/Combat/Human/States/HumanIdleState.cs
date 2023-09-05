@@ -15,7 +15,7 @@ public class HumanIdleState : EnemyStateBase
 
         Agent.enabled = true;
         Agent.isStopped = false;
-        Animator.Play("Walk");
+        // Animator.Play("Walk");
 
         // var propertyBlock = new MaterialPropertyBlock();
         // propertyBlock.SetColor("_Color", Color.cyan);

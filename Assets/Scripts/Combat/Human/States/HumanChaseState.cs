@@ -12,7 +12,7 @@ public class HumanChaseState : EnemyStateBase
     {
         base.OnEnter();
 
-        GameObject target = Enemy.GetClosestTarget();
+        GameObject target = Enemy.DetermineTarget();
         if (target == null)
         {
             fsm.StateCanExit();
@@ -25,7 +25,7 @@ public class HumanChaseState : EnemyStateBase
 
         Agent.enabled = true;
         Agent.isStopped = false;
-        Animator.Play("Walk");
+        // Animator.Play("Walk");
 
         // var propertyBlock = new MaterialPropertyBlock();
         // propertyBlock.SetColor("_Color", Color.cyan);

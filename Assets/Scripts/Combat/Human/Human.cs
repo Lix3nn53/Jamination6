@@ -7,15 +7,15 @@ using Lix.Core;
 using Crystal;
 
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
-public class Human : Enemy
+public class Human : EnemyWithAI
 {
     [Header("Sensors")]
     [SerializeField]
-    private ZombieSensor _followPlayerSensor;
+    private ZombieSensor _zombieSensor;
 
     private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
 
-    private ZombiePool _zombiePool;
+    private ZombiePoolManager _zombiePool;
 
     private ZombieTypeSelector _zombieTypeSelector;
 
@@ -53,23 +53,24 @@ public class Human : Enemy
 
     private void Start()
     {
-        _zombiePool = ServiceLocator.Get<ZombiePool>();
+        _zombiePool = ServiceLocator.Get<ZombiePoolManager>();
         _zombieTypeSelector = ServiceLocator.Get<ZombieTypeSelector>();
     }
 
-    private void OnEnable()
+    public override void OnEnable()
     {
-        
-        _followPlayerSensor.OnZombieEnter += FollowPlayerSensor_OnPlayerEnter;
-        _followPlayerSensor.OnZombieExit += FollowPlayerSensor_OnPlayerExit;
+        base.OnEnable();
+
+        _zombieSensor.OnZombieEnter += FollowPlayerSensor_OnZombieEnter;
+        _zombieSensor.OnZombieExit += FollowPlayerSensor_OnZombieExit;
         // _rangeAttackPlayerSensor.OnPlayerEnter += RangeAttackPlayerSensor_OnPlayerEnter;
         // _rangeAttackPlayerSensor.OnPlayerExit += RangeAttackPlayerSensor_OnPlayerExit;
     }
 
     private void OnDisable()
     {
-        _followPlayerSensor.OnZombieEnter -= FollowPlayerSensor_OnPlayerEnter;
-        _followPlayerSensor.OnZombieExit -= FollowPlayerSensor_OnPlayerExit;
+        _zombieSensor.OnZombieEnter -= FollowPlayerSensor_OnZombieEnter;
+        _zombieSensor.OnZombieExit -= FollowPlayerSensor_OnZombieExit;
         // _rangeAttackPlayerSensor.OnPlayerEnter -= RangeAttackPlayerSensor_OnPlayerEnter;
         // _rangeAttackPlayerSensor.OnPlayerExit -= RangeAttackPlayerSensor_OnPlayerExit;
     }
@@ -78,13 +79,13 @@ public class Human : Enemy
         _enemyFSM.OnLogic();
     }
 
-    private void FollowPlayerSensor_OnPlayerExit(GameObject player)
+    private void FollowPlayerSensor_OnZombieExit(GameObject player)
     {
         TargetsInRange.Remove(player);
         _enemyFSM.Trigger(EnemyStateEvent.LostTarget);
     }
 
-    private void FollowPlayerSensor_OnPlayerEnter(GameObject player)
+    private void FollowPlayerSensor_OnZombieEnter(GameObject player)
     {
         TargetsInRange.Add(player);
         _enemyFSM.Trigger(EnemyStateEvent.DetectTarget);
@@ -92,7 +93,7 @@ public class Human : Enemy
 
     private void OnAttack(State<EnemyState, EnemyStateEvent> State)
     {
-        GameObject closest = GetClosestTarget();
+        GameObject closest = DetermineTarget();
 
         if (!ShouldMelee(null))
         {
@@ -122,6 +123,9 @@ public class Human : Enemy
         ZombieType zombieType = _zombieTypeSelector.activeType;
 
         // instantiate zombie
-        Zombie zombie = _zombiePool.Get(zombieType, transform.position, transform.rotation);
+        Zombie zombie = _zombiePool.GetZombie(zombieType);
+        zombie.transform.position = transform.position;
+        zombie.transform.rotation = transform.rotation;
+        zombie.gameObject.SetActive(true);
     }
 }

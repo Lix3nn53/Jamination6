@@ -327,18 +327,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90c40cccb4455f1448af16879ca378c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  MeshRenderer: {fileID: 7178258748228010456}
+  MaxHealth: 40
+  Health: 100
   TargetsInRange: []
   ClosestDistance: Infinity
-  MeshRenderer: {fileID: 7178258748228010456}
-  Animator: {fileID: 0}
   Agent: {fileID: 0}
   MeleeAttackCooldown: 2
   MeleeRange: 4
-  MaxHealth: 40
   Damage: 10
   LastAttackTime: 0
-  _followPlayerSensor: {fileID: 577584666624165253}
-  _zombiePrefab: {fileID: 5219476069984165251, guid: 3057406381602704f835678364c28f14, type: 3}
+  _zombieSensor: {fileID: 577584666624165253}
 --- !u!54 &3058730379718250159
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -549,7 +548,7 @@ GameObject:
   - component: {fileID: 2540313615624140240}
   - component: {fileID: 577584666624165253}
   m_Layer: 12
-  m_Name: Follow Sensor
+  m_Name: Zombie Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

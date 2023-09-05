@@ -5,16 +5,16 @@ namespace LlamAcademy.Sensors
     [RequireComponent(typeof(SphereCollider))]
     public class HumanSensor : MonoBehaviour
     {
-        public delegate void HumanEnterEvent(GameObject human);
-        public delegate void HumanExitEvent(GameObject human);
-        public event HumanEnterEvent OnHumanEnter;
-        public event HumanExitEvent OnHumanExit;
+        public delegate void EnterEvent(GameObject human);
+        public delegate void ExitEvent(GameObject human);
+        public event EnterEvent OnEnter;
+        public event ExitEvent OnExit;
 
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out Human human))
             {
-                OnHumanEnter?.Invoke(human.gameObject);
+                OnEnter?.Invoke(human.gameObject);
             }
         }
 
@@ -22,7 +22,7 @@ namespace LlamAcademy.Sensors
         {
             if (other.TryGetComponent(out Human human))
             {
-                OnHumanExit?.Invoke(human.gameObject);
+                OnExit?.Invoke(human.gameObject);
             }
         }
     }

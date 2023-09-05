@@ -59,30 +59,30 @@ public class ZombieTypeSelector : MonoBehaviour
   {
     zombieTypeToggleSprite = toggle.GetComponent<ZombieTypeToggleSprites>();
     zombieTypeToggleSprite.ChangeSprite(toggle);
-    
-    if(toggle.isOn)
+
+    if (toggle.isOn)
     {
       Enum.TryParse(toggle.name, true, out ZombieType type);
       activeType = type;
       Debug.Log("ChangeActiveType = " + activeType);
 
       switch (activeType)
-        {
-          case ZombieType.Damager:
-              virusProgressBar.value = _player.damagerVirus;
-              break;
-          case ZombieType.Healer:
-              virusProgressBar.value = _player.healerVirus;
-              break;
-          case ZombieType.Tank:
-              virusProgressBar.value = _player.tankVirus;
-              break;
-          case ZombieType.Collector:
-              virusProgressBar.value = _player.collectorVirus;
-              break;
-              default:
-              break;
-        }
+      {
+        case ZombieType.Attacker:
+          virusProgressBar.value = _player.damagerVirus;
+          break;
+        case ZombieType.Healer:
+          virusProgressBar.value = _player.healerVirus;
+          break;
+        case ZombieType.Tank:
+          virusProgressBar.value = _player.tankVirus;
+          break;
+        case ZombieType.Collector:
+          virusProgressBar.value = _player.collectorVirus;
+          break;
+        default:
+          break;
+      }
     }
   }
 }
