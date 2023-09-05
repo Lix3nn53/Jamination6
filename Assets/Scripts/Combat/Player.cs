@@ -34,11 +34,11 @@ public class Player : CombatUnit
   }
   public void OnEnable()
   {
-    _humanSensor.OnHumanEnter += HumanSensor_OnHumanEnter;
+    _humanSensor.OnEnter += HumanSensor_OnHumanEnter;
   }
   public void OnDisable()
   {
-    _humanSensor.OnHumanEnter -= HumanSensor_OnHumanEnter;
+    _humanSensor.OnEnter -= HumanSensor_OnHumanEnter;
   }
   public override void OnDeath()
   {

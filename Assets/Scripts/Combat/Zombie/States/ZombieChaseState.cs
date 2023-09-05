@@ -12,7 +12,7 @@ public class ZombieChaseState : EnemyStateBase
     {
         base.OnEnter();
 
-        GameObject target = Enemy.GetClosestTarget();
+        GameObject target = Enemy.DetermineTarget();
         if (target == null)
         {
             fsm.StateCanExit();

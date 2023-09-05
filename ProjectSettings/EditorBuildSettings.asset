@@ -9,10 +9,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Final Levels/Menu.unity
     guid: db13eee2347337840a23e5f0b984c3ef
   - enabled: 1
+    path: Assets/Scenes/Final Levels/Test 2.unity
+    guid: df129dabeeeea4c428cb58c5a9bb606e
+  - enabled: 1
     path: Assets/Scenes/Final Levels/Test 1.unity
     guid: d6d8a376e8095564787b1bdb61b43c70
-  - enabled: 1
-    path: Assets/Scenes/Final Levels/Test 2.unity
-    guid: 1e774fda0259ad14aa5370f39907979b
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 89c87ec42c209db41ad057e6a881b643, type: 2}

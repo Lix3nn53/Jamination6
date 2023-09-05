@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public abstract class EnemyStateBase : State<EnemyState, EnemyStateEvent>
 {
-    protected readonly Enemy Enemy;
+    protected readonly EnemyWithAI Enemy;
     protected readonly NavMeshAgent Agent;
     protected readonly Animator Animator;
     protected bool RequestedExit;
@@ -17,7 +17,7 @@ public abstract class EnemyStateBase : State<EnemyState, EnemyStateEvent>
     protected readonly Func<State<EnemyState, EnemyStateEvent>, bool> canExit;
 
     public EnemyStateBase(bool needsExitTime,
-        Enemy Enemy,
+        EnemyWithAI Enemy,
         float ExitTime = 0.1f,
         Action<State<EnemyState, EnemyStateEvent>> onEnter = null,
         Action<State<EnemyState, EnemyStateEvent>> onLogic = null,

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace LlamAcademy.Sensors
 {
     [RequireComponent(typeof(SphereCollider))]
-    public class HumanSensor : MonoBehaviour
+    public class LootSensor : MonoBehaviour
     {
         public delegate void EnterEvent(GameObject human);
         public delegate void ExitEvent(GameObject human);
@@ -12,7 +12,7 @@ namespace LlamAcademy.Sensors
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent(out Human human))
+            if (other.TryGetComponent(out Loot human))
             {
                 OnEnter?.Invoke(human.gameObject);
             }
@@ -20,7 +20,7 @@ namespace LlamAcademy.Sensors
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.TryGetComponent(out Human human))
+            if (other.TryGetComponent(out Loot human))
             {
                 OnExit?.Invoke(human.gameObject);
             }
