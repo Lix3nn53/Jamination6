@@ -1,7 +1,7 @@
 public enum ZombieType
 {
-    Normal,
+    Damager,
     Healer,
-    // Tank,
-    // Fast
+    Tank,
+    Collector
 }

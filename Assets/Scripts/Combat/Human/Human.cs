@@ -4,6 +4,7 @@ using FSM;
 using LlamAcademy.Sensors;
 using UnityEngine.AI;
 using Lix.Core;
+using Crystal;
 
 [RequireComponent(typeof(Animator), typeof(NavMeshAgent))]
 public class Human : Enemy
@@ -15,6 +16,8 @@ public class Human : Enemy
     private StateMachine<EnemyState, EnemyStateEvent> _enemyFSM;
 
     private ZombiePool _zombiePool;
+
+    private ZombieTypeSelector _zombieTypeSelector;
 
     public override void Awake()
     {
@@ -51,10 +54,12 @@ public class Human : Enemy
     private void Start()
     {
         _zombiePool = ServiceLocator.Get<ZombiePool>();
+        _zombieTypeSelector = ServiceLocator.Get<ZombieTypeSelector>();
     }
 
     private void OnEnable()
     {
+        
         _followPlayerSensor.OnZombieEnter += FollowPlayerSensor_OnPlayerEnter;
         _followPlayerSensor.OnZombieExit += FollowPlayerSensor_OnPlayerExit;
         // _rangeAttackPlayerSensor.OnPlayerEnter += RangeAttackPlayerSensor_OnPlayerEnter;
@@ -114,7 +119,7 @@ public class Human : Enemy
         base.Die();
 
         // Random enum ZombieType
-        ZombieType zombieType = (ZombieType)Random.Range(0, System.Enum.GetValues(typeof(ZombieType)).Length);
+        ZombieType zombieType = _zombieTypeSelector.activeType;
 
         // instantiate zombie
         Zombie zombie = _zombiePool.Get(zombieType, transform.position, transform.rotation);

@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
   public OnScoreChange OnScoreChangeEvent;
   public delegate void OnPlayerHealthChange(int currentHP);
   public OnPlayerHealthChange OnPlayerHealthChangeEvent;
+  public delegate void OnZombieTypeChange(ZombieType activeType);
+  public OnZombieTypeChange OnZombieTypeChangeEvent;
 
   public delegate void OnGameOver(int score);
   public OnGameOver OnGameOverEvent;
