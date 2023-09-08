@@ -6,11 +6,12 @@ using Lix.Core;
 public class LootPool : ObjectPoolMono<Loot>
 {
   [SerializeField] private LootFactory _factory;
-  [SerializeField] private LootType _lootType;
+  [SerializeField] private List<LootSpawnerItemSO> _weightedList = new List<LootSpawnerItemSO>();
 
   public override Loot CreatePooledObject()
   {
-    Loot instance = _factory.Create(_lootType);
+    LootSpawnerItemSO item = SelectWeightedItem();
+    Loot instance = _factory.Create(item.lootType);
     instance.gameObject.SetActive(false);
 
     return instance;
@@ -30,5 +31,32 @@ public class LootPool : ObjectPoolMono<Loot>
   public override void OnDestroyObject(Loot instance)
   {
     Destroy(instance.gameObject);
+  }
+
+  private LootSpawnerItemSO SelectWeightedItem()
+  {
+    // Calculate the total weight of all items
+    float totalWeight = 0;
+    foreach (LootSpawnerItemSO item in _weightedList)
+    {
+      totalWeight += item.Weight;
+    }
+
+    // Generate a random number between 0 and the total weight
+    float randomWeight = Random.Range(0f, totalWeight);
+
+    // Loop through the items and subtract their weight from the random number
+    // until we find the selected item
+    foreach (LootSpawnerItemSO item in _weightedList)
+    {
+      if (randomWeight < item.Weight)
+      {
+        return item;
+      }
+      randomWeight -= item.Weight;
+    }
+
+    // This should never happen, but just in case
+    return null;
   }
 }

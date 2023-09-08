@@ -6,5 +6,6 @@ using UnityEngine;
 public class LootSpawnerItemSO : ScriptableObject
 {
   [SerializeField] public GameObject Prefab;
+  [SerializeField] public LootType lootType;
   [SerializeField] public int Weight;
 }
