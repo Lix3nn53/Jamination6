@@ -155,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 2
 --- !u!65 &7259477
 BoxCollider:
@@ -5699,6 +5700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 1
 --- !u!65 &137117957
 BoxCollider:
@@ -7088,7 +7090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 1466109794}
-  _zombiePool: {fileID: 477360132}
+  _zombiePoolManager: {fileID: 0}
   _zombieTypeSelector: {fileID: 1901071930}
 --- !u!4 &250400992
 Transform:
@@ -7422,6 +7424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 3
 --- !u!65 &334890456
 BoxCollider:
@@ -7985,6 +7988,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 2
 --- !u!65 &366136236
 BoxCollider:
@@ -8595,10 +8599,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b98e38ce6b1dec74e94525f33c2695f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _zombiePrefab: {fileID: 5219476069984165251, guid: 3057406381602704f835678364c28f14, type: 3}
-  _zombieHealerPrefab: {fileID: 6487219337266137889, guid: ab617d9510925eb4db787cd61260fd1d, type: 3}
-  _zombieTankPrefab: {fileID: 5911485607259417667, guid: eb1a73a5a2695e044bb4677dfd9ce704, type: 3}
-  _zombieCollectorPrefab: {fileID: 6074477114699749307, guid: 69c56a61d9998624a80dd20e6664f68d, type: 3}
 --- !u!1 &482624039
 GameObject:
   m_ObjectHideFlags: 0
@@ -9736,6 +9736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 6
 --- !u!65 &568930221
 BoxCollider:
@@ -10418,6 +10419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 6
 --- !u!65 &650419564
 BoxCollider:
@@ -10896,6 +10898,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &701399757
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 8.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397212367530041828, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_Name
+      value: AttackerVirus
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
 --- !u!1 &720128737
 GameObject:
   m_ObjectHideFlags: 0
@@ -12029,6 +12088,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 0
 --- !u!1 &790383922
 GameObject:
@@ -12148,6 +12208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 7
 --- !u!43 &794304876
 Mesh:
@@ -12547,6 +12608,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 5
 --- !u!65 &852706057
 BoxCollider:
@@ -13185,6 +13247,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 5
 --- !u!43 &929106868
 Mesh:
@@ -15822,6 +15885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 6
 --- !u!65 &1128708299
 BoxCollider:
@@ -16672,6 +16736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 1
 --- !u!1 &1211072241
 GameObject:
@@ -17191,6 +17256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 7
 --- !u!65 &1271503970
 BoxCollider:
@@ -17472,7 +17538,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1272708204}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
+  m_LocalRotation: {x: 0.30280447, y: -0.638991, z: 0.3028045, w: 0.63899094}
   m_LocalPosition: {x: -5, y: 24, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -18240,6 +18306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 5
 --- !u!65 &1372109166
 BoxCollider:
@@ -18391,7 +18458,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1379248025}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30280447, y: -0.63899094, z: 0.30280447, w: 0.638991}
+  m_LocalRotation: {x: 0.30280447, y: -0.638991, z: 0.3028045, w: 0.63899094}
   m_LocalPosition: {x: -5, y: 24, z: 24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19452,7 +19519,7 @@ MonoBehaviour:
   _meleeCooldown: 0
   _pushForce: 10
   _humanSensor: {fileID: 1717861327}
-  damagerVirus: 0
+  attackerVirus: 0
   healerVirus: 0
   tankVirus: 0
   collectorVirus: 0
@@ -20117,6 +20184,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 0
 --- !u!65 &1560682517
 BoxCollider:
@@ -20876,6 +20944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 2
 --- !u!43 &1608618753
 Mesh:
@@ -22060,6 +22129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 3
 --- !u!65 &1698959016
 BoxCollider:
@@ -22265,6 +22335,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 4
 --- !u!1 &1712238739
 GameObject:
@@ -23713,6 +23784,63 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1001 &1834884967
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -21.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 14.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3489804911428410820, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6397212367530041828, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
+      propertyPath: m_Name
+      value: AttackerVirus (1)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a24a8bd93b4ce6f439974d762ac7616a, type: 3}
 --- !u!1 &1839727450
 GameObject:
   m_ObjectHideFlags: 0
@@ -23831,6 +23959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 3
 --- !u!43 &1851903401
 Mesh:
@@ -25865,6 +25994,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 2
 --- !u!65 &2042128317
 BoxCollider:
@@ -26422,6 +26552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33f8f66c26b233c4c82b67d835e68ec6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LootPool: {fileID: 0}
   lootType: 6
 --- !u!1 &2133558616
 GameObject:
@@ -52595,6 +52726,8 @@ SceneRoots:
   - {fileID: 790383927}
   - {fileID: 650419567}
   - {fileID: 568930224}
+  - {fileID: 701399757}
+  - {fileID: 1834884967}
   - {fileID: 1128708302}
   - {fileID: 1372109169}
   - {fileID: 1271503973}

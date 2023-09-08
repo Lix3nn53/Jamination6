@@ -12,6 +12,8 @@ public class LootSpawner : MonoBehaviour
   [SerializeField] private float _spawnRate = 1f;
   [SerializeField] private float _maxScaleMultiplier = 1.5f;
 
+   private LootPoolManager _lootPool;
+
   private void Start()
   {
     StartCoroutine(SpawnLoop());
@@ -37,13 +39,20 @@ public class LootSpawner : MonoBehaviour
     LootSpawnerItemSO item = SelectWeightedItem();
 
     // Spawn the item
-    GameObject spawned = Instantiate(item.Prefab, spawnLocation.position, spawnLocation.rotation);
+
+    LootType lootType = (LootType)Random.Range(0, System.Enum.GetValues(typeof(LootType)).Length);
+
+    // instantiate zombie
+    Loot loot = _lootPool.GetLoot(lootType);
+    loot.transform.position = transform.position;
+    loot.transform.rotation = transform.rotation;
+    loot.gameObject.SetActive(true);
 
     // Random scale
     float randomScale = Random.Range(1f, _maxScaleMultiplier);
-    Vector3 newScale = spawned.transform.localScale;
+    Vector3 newScale = loot.transform.localScale;
     newScale *= randomScale;
-    spawned.transform.localScale = newScale;
+    loot.transform.localScale = newScale;
   }
 
   private Transform GetRandomSpawnLocation()
