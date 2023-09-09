@@ -6,7 +6,7 @@ public class LevelSL : ServiceLocatorRegisterMono
 {
   [SerializeField] private Player _player;
   [SerializeField] private ZombiePoolManager _zombiePoolManager;
-
+  [SerializeField] private LootPoolManager _lootPoolManager;
   [SerializeField] private ZombieTypeSelector _zombieTypeSelector;
 
   public override void RegisterServices()
@@ -14,6 +14,8 @@ public class LevelSL : ServiceLocatorRegisterMono
     ServiceLocator.Register(new ServiceDescriptor(_player), false);
     ServiceLocator.Register(new ServiceDescriptor(_zombiePoolManager), false);
     ServiceLocator.Register(new ServiceDescriptor(_zombieTypeSelector), false);
+    ServiceLocator.Register(new ServiceDescriptor(_lootPoolManager), false);
+    
   }
 
   public override void UnregisterServices()
@@ -21,5 +23,7 @@ public class LevelSL : ServiceLocatorRegisterMono
     ServiceLocator.Remove(_player);
     ServiceLocator.Remove(_zombiePoolManager);
     ServiceLocator.Remove(_zombieTypeSelector);
+    ServiceLocator.Remove(_lootPoolManager);
+    
   }
 }
